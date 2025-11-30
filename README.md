@@ -1,145 +1,112 @@
-# 🚀 Portafolio Personal de Antonio Lloret
+# 🚀 Portafolio Revolucionario
 
-Portafolio interactivo con IA integrada, funcionalidades sociales y gamificación.
+Portafolio profesional con características avanzadas: IA, gamificación, analytics y sistema de agentes autónomos.
 
 ## ✨ Características
 
-- 🤖 **Chatbot de IA** - Asistente virtual que responde preguntas sobre el portafolio
-- ❤️ **Sistema de Likes** - Los visitantes pueden dar like a proyectos
-- 🏆 **Gamificación** - Sistema de logros y puntos
-- 📊 **Analytics** - Tracking de interacciones y eventos
-- 🎨 **Diseño Moderno** - UI/UX profesional con Tailwind CSS
-- ⚡ **Performance** - Optimizado con Next.js 14
+- 🤖 **Chatbot de IA** integrado con Google Gemini
+- 🎮 **Sistema de Gamificación** con logros y recompensas
+- 📊 **Dashboard de Analytics** en tiempo real
+- 💬 **Sistema Social** con likes y comentarios
+- 🌓 **Modo Oscuro/Claro** con persistencia
+- 📱 **PWA** - Instalable como app
+- 🤖 **Sistema de Agentes Autónomos** con monitoreo en tiempo real
+- 🎨 **Diseño Moderno** con estética verde profesional
+
+## 🛠️ Tecnologías
+
+- **Next.js 14** - Framework React
+- **TypeScript** - Tipado estático
+- **Tailwind CSS** - Estilos
+- **Supabase** - Backend y base de datos
+- **Google Gemini** - IA
+- **Framer Motion** - Animaciones
+- **Jest + React Testing Library** - Testing
 
 ## 🚀 Inicio Rápido
 
-### 1. Instalar Dependencias
+### Instalación
 
 ```bash
-cd portafolio-revolucionario
+# Instalar dependencias
 npm install
-```
 
-### 2. Configurar Variables de Entorno
+# Configurar variables de entorno
+cp .env.example .env.local
+# Edita .env.local con tus credenciales
 
-Copia `.env.local.example` a `.env.local` y configura:
-
-```env
-GEMINI_API_KEY=tu_api_key_de_gemini
-NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase
-NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_anon_key_de_supabase
-```
-
-### 3. Ejecutar en Desarrollo
-
-```bash
+# Iniciar servidor de desarrollo
 npm run dev
 ```
 
-Abre [http://localhost:3002](http://localhost:3002)
+Abre [http://localhost:3002](http://localhost:3002) en tu navegador.
 
-> **Nota**: El puerto 3002 se usa para evitar conflicto con el Dashboard de Agentes (puerto 3000)
+### Configuración
 
-## 📦 Estructura del Proyecto
+1. **Variables de Entorno** - Ver `SETUP.md` para detalles
+2. **Supabase** - Configuración en `SETUP.md`
+3. **Google Gemini API** - Obtén tu API key en [Google AI Studio](https://makersuite.google.com/app/apikey)
 
-```
-portafolio-revolucionario/
-├── app/              # Next.js App Router
-│   ├── api/         # API Routes
-│   ├── layout.tsx   # Layout principal
-│   └── page.tsx     # Página principal
-├── components/      # Componentes React
-│   ├── ai/         # Componentes de IA
-│   ├── portfolio/  # Componentes del portafolio
-│   ├── social/     # Funcionalidades sociales
-│   └── ui/         # Componentes UI base
-├── lib/            # Utilidades y configuraciones
-├── types/          # TypeScript types
-└── data/           # Datos del portafolio
-```
+## 📚 Documentación
 
-## 🔧 Configuración de Supabase (Opcional)
+- **[QUICK_START.md](./QUICK_START.md)** - Guía rápida de inicio
+- **[SETUP.md](./SETUP.md)** - Configuración detallada
+- **[GUIA_USO_INTERFAZ.md](./GUIA_USO_INTERFAZ.md)** - Guía de uso de la interfaz
+- **[TESTING.md](./TESTING.md)** - Sistema de testing
+- **[COMMITS.md](./COMMITS.md)** - Guía de commits y workflow
 
-Si quieres usar funcionalidades sociales completas:
-
-1. Crea un proyecto en [Supabase](https://supabase.com)
-2. Ejecuta este SQL en el SQL Editor:
-
-```sql
--- Tabla de interacciones
-CREATE TABLE interactions (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  visitor_id TEXT NOT NULL,
-  project_id TEXT,
-  interaction_type TEXT NOT NULL CHECK (interaction_type IN ('like', 'comment', 'view')),
-  content TEXT,
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
--- Índices para mejor performance
-CREATE INDEX idx_interactions_project ON interactions(project_id);
-CREATE INDEX idx_interactions_visitor ON interactions(visitor_id);
-CREATE INDEX idx_interactions_type ON interactions(interaction_type);
-```
-
-## 🎯 Funcionalidades Implementadas
-
-### Chatbot de IA
-- Integración con Google Gemini API
-- Respuestas contextuales sobre el portafolio
-- Interfaz de chat moderna y responsive
-
-### Sistema de Likes
-- Likes persistentes en Supabase
-- Contador en tiempo real
-- Prevención de likes duplicados
-
-### Gamificación
-- Sistema de logros desbloqueables
-- Notificaciones de logros
-- Tracking de acciones del usuario
-
-### Analytics
-- Tracking de eventos
-- Page views
-- Interacciones de usuario
-
-## 🚀 Despliegue
-
-### Vercel (Recomendado)
+## 🧪 Testing
 
 ```bash
-npm install -g vercel
-vercel
+# Ejecutar tests
+npm test
+
+# Tests con coverage
+npm run test:coverage
+
+# Validación completa
+npm run validate
 ```
 
-### Otras Plataformas
+## 🔄 CI/CD
 
-El proyecto es compatible con cualquier plataforma que soporte Next.js:
-- Netlify
-- Railway
-- Render
-- AWS Amplify
+El proyecto incluye GitHub Actions para:
+- ✅ Lint & Type Check automático
+- ✅ Tests en cada push/PR
+- ✅ Build verification
+- ✅ Security audit
+- ✅ Dependency updates check
 
-## 📝 Próximas Mejoras
+## 📦 Scripts Disponibles
 
-- [ ] Sistema de comentarios completo
-- [ ] Dashboard de analytics visual
-- [ ] Más logros y desafíos
-- [ ] Integración con GitHub API
-- [ ] Modo oscuro/claro
-- [ ] PWA support
+```bash
+npm run dev              # Desarrollo
+npm run build            # Build de producción
+npm run start            # Servidor de producción
+npm test                 # Ejecutar tests
+npm run validate         # Validación completa
+npm run check-deps       # Verificar dependencias
+npm run update-deps      # Actualizar dependencias
+npm run fix-vulnerabilities  # Corregir vulnerabilidades
+```
 
-## 🤝 Contribuir
+## 🔒 Seguridad
 
-Las contribuciones son bienvenidas. Por favor:
-1. Fork el proyecto
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
+- ✅ 0 vulnerabilidades conocidas
+- ✅ Pre-commit hooks para validación
+- ✅ Security audit automático
+- ✅ Dependency updates automáticos
 
 ## 📄 Licencia
 
-MIT License
+Este proyecto es privado y personal.
 
+## 👤 Autor
+
+**Antonio Lloret**
+- GitHub: [@Toni872](https://github.com/Toni872)
+- Portfolio: [En desarrollo]
+
+---
+
+⭐ Si te gusta este proyecto, dale una estrella en GitHub!
