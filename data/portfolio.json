@@ -1,0 +1,271 @@
+{
+  "title": "Toni Lloret | Full Stack Developer",
+  "description": "Full Stack Developer from Spain specializing in TypeScript, React, and NestJS. Building scalable enterprise solutions.",
+  "image": "/avatar.jpg",
+  "avatar": "/avatar.jpg",
+  "name": "Toni Lloret",
+  "skill": "Full Stack Developer",
+  "location": "Spain",
+  "media": {
+    "email": "antohachi@gmail.com",
+    "cv": "/data/cv.pdf",
+    "github": "https://github.com/Toni872",
+    "linkedin": "https://www.linkedin.com/in/antonio-lloret-sánchez-080166156/"
+  },
+  "about": "Fully committed to the philosophy of life-long learning, I'm a full stack developer with a deep passion for TypeScript, React, NestJS and modern web technologies. The unique combination of creativity, logic, and technology drives my excitement for building scalable enterprise solutions. I specialize in developing complex business applications with clean code, testing, and best practices.",
+  "technologies": [
+    {
+      "icon": "devicon-typescript-plain",
+      "name": "TypeScript",
+      "category": "Frontend"
+    },
+    {
+      "icon": "devicon-react-original",
+      "name": "React",
+      "category": "Frontend"
+    },
+    {
+      "icon": "devicon-nextjs-plain",
+      "name": "Next.js",
+      "category": "Frontend"
+    },
+    {
+      "icon": "devicon-materialui-plain",
+      "name": "Material-UI",
+      "category": "Frontend"
+    },
+    {
+      "icon": "devicon-nestjs-plain",
+      "name": "NestJS",
+      "category": "Backend"
+    },
+    {
+      "icon": "devicon-nodejs-plain",
+      "name": "Node.js",
+      "category": "Backend"
+    },
+    {
+      "icon": "devicon-graphql-plain",
+      "name": "GraphQL",
+      "category": "Backend"
+    },
+    {
+      "icon": "devicon-python-plain",
+      "name": "Python",
+      "category": "Backend"
+    },
+    {
+      "icon": "devicon-postgresql-plain",
+      "name": "PostgreSQL",
+      "category": "Database"
+    },
+    {
+      "icon": "devicon-prisma-plain",
+      "name": "Prisma",
+      "category": "Database"
+    },
+    {
+      "icon": "devicon-redis-plain",
+      "name": "Redis",
+      "category": "Database"
+    },
+    {
+      "icon": "devicon-docker-plain",
+      "name": "Docker",
+      "category": "DevOps"
+    },
+    {
+      "icon": "devicon-git-plain",
+      "name": "Git",
+      "category": "DevOps"
+    }
+  ],
+  "experience": [],
+  "projects": [
+    {
+      "id": "sistema-erp",
+      "icon": "briefcase",
+      "title": "Enterprise ERP System",
+      "subtitle": "Full-stack business management system with AI integration",
+      "description": "Complete ERP system with NestJS, GraphQL Apollo Server, React 18 and PostgreSQL. 28 modules including Dashboard with KPIs, Sales, Purchases, Products, Inventory, Financial Reports, Logistics, AI Engine with FastAPI, and RPA automation. JWT authentication with RBAC roles, 100+ React components, 24+ optimized tables, microservices architecture, Docker Compose containerization, and Zod validation. Extensive testing with Postman and fixtures. 15,000+ lines of code and 50+ API endpoints.",
+      "technologies": [
+        {
+          "icon": "devicon-typescript-plain",
+          "name": "TypeScript"
+        },
+        {
+          "icon": "devicon-react-original",
+          "name": "React"
+        },
+        {
+          "icon": "devicon-nestjs-plain",
+          "name": "NestJS"
+        },
+        {
+          "icon": "devicon-graphql-plain",
+          "name": "GraphQL"
+        },
+        {
+          "icon": "devicon-postgresql-plain",
+          "name": "PostgreSQL"
+        },
+        {
+          "icon": "devicon-docker-plain",
+          "name": "Docker"
+        }
+      ],
+      "image": "/projects/erp-dashboard.png",
+      "url": "https://frontend-2zj6xn52l-toni872s-projects.vercel.app",
+      "github": "https://github.com/Toni872/SISTEMAEMPRESARIAL",
+      "detail_url": "/project-erp.html",
+      "stats": {
+        "modules": "28",
+        "lines": "15,000+",
+        "endpoints": "50+"
+      }
+    },
+    {
+      "id": "vilok-project",
+      "icon": "sparkles",
+      "title": "VilokProject",
+      "subtitle": "Marketplace for workspace and event rentals",
+      "description": "Complete marketplace for workspace and event rentals built with Next.js 14 and TypeScript. Supabase integration for PostgreSQL backend, Stripe for payments, and Cloudflare R2 for images. 30+ React components, real-time booking system, secure payments, host-guest messaging, post-booking reviews. Scalable architecture with OAuth authentication, RLS, geographic search with PostGIS, and role-based dashboards.",
+      "technologies": [
+        {
+          "icon": "devicon-react-original",
+          "name": "React"
+        },
+        {
+          "icon": "devicon-nextjs-plain",
+          "name": "Next.js"
+        },
+        {
+          "icon": "devicon-typescript-plain",
+          "name": "TypeScript"
+        },
+        {
+          "icon": "devicon-postgresql-plain",
+          "name": "PostgreSQL"
+        }
+      ],
+      "image": "/projects/vilok-marketplace.png",
+      "url": "https://github.com/Toni872/VilokProject",
+      "github": "https://github.com/Toni872/VilokProject",
+      "detail_url": "/project-vilok.html"
+    },
+    {
+      "id": "datainsight",
+      "icon": "chart-bar",
+      "title": "DataInsight",
+      "subtitle": "Advanced data analysis and machine learning platform",
+      "description": "Advanced platform for data analysis and machine learning with optimized algorithms, interactive visualizations, and REST API. Built with modern web technologies for data scientists and analysts.",
+      "technologies": [
+        {
+          "icon": "devicon-python-plain",
+          "name": "Python"
+        },
+        {
+          "icon": "devicon-react-original",
+          "name": "React"
+        }
+      ],
+      "image": "/projects/datainsight-analytics.png",
+      "github": "https://github.com/Toni872/Datainsight"
+    },
+    {
+      "id": "autonomous-agents-system",
+      "icon": "brain",
+      "title": "Autonomous Agents System",
+      "subtitle": "Multi-agent AI orchestration platform",
+      "description": "Production-ready multi-agent framework with specialized agents (General, Coder, Researcher, Visual). Features include Docker-based sandboxing, persistent memory, real-time monitoring dashboard, inter-agent communication, visual verification with screenshots, and comprehensive security (rate limiting, throttling, circuit breakers). Built with TypeScript, Express, Socket.io, BullMQ, and Next.js dashboard.",
+      "technologies": [
+        {
+          "icon": "devicon-typescript-plain",
+          "name": "TypeScript"
+        },
+        {
+          "icon": "devicon-nodejs-plain",
+          "name": "Node.js"
+        },
+        {
+          "icon": "devicon-react-original",
+          "name": "React"
+        },
+        {
+          "icon": "devicon-nextjs-plain",
+          "name": "Next.js"
+        },
+        {
+          "icon": "devicon-docker-plain",
+          "name": "Docker"
+        },
+        {
+          "icon": "devicon-redis-plain",
+          "name": "Redis"
+        }
+      ],
+      "image": "/projects/datainsight-analytics.png",
+      "github": "https://github.com/Toni872",
+      "stats": {
+        "agents": "4",
+        "components": "20+",
+        "endpoints": "15+"
+      }
+    },
+    {
+      "id": "claude-code-infrastructure",
+      "icon": "code",
+      "title": "Claude Code Infrastructure",
+      "subtitle": "LLM integration infrastructure",
+      "description": "Modular infrastructure for integrating Large Language Models (LLMs) into applications. Provides reusable components, API wrappers, and utilities for Claude and other AI models. Includes error handling, rate limiting, and caching mechanisms.",
+      "technologies": [
+        {
+          "icon": "devicon-python-plain",
+          "name": "Python"
+        },
+        {
+          "icon": "devicon-nodejs-plain",
+          "name": "Node.js"
+        }
+      ],
+      "image": "/projects/datainsight-analytics.png",
+      "github": "https://github.com/Toni872/claude-code-infrastructure"
+    }
+  ],
+  "training": [
+    {
+      "icon": "graduation-cap",
+      "title": "Escuela Musk",
+      "subtitle": "Specialization in AI and Programming",
+      "description": "Specialized training in software development, artificial intelligence and machine learning.",
+      "date": "2020 - 2021"
+    },
+    {
+      "icon": "book-open",
+      "title": "Continuous Development",
+      "subtitle": "Self-taught",
+      "description": "Constant learning in Full-Stack development, modern architectures and software engineering best practices.",
+      "date": "2020 - Present"
+    }
+  ],
+  "extras": [
+    {
+      "image": "/extra_1.jpg",
+      "title": "Full-Stack Developer",
+      "description": "Specialized in modern and scalable web applications.",
+      "url": "https://github.com/Toni872"
+    },
+    {
+      "image": "/extra_2.jpg",
+      "title": "Software Architecture",
+      "description": "Experience in designing modular architectures and distributed systems.",
+      "url": "https://github.com/Toni872"
+    },
+    {
+      "image": "/extra_3.jpg",
+      "title": "DevOps & CI/CD",
+      "description": "Implementation of pipelines and containerization with Docker.",
+      "url": "https://github.com/Toni872"
+    }
+  ]
+}

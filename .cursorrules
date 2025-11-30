@@ -1,0 +1,38 @@
+# Reglas del Proyecto para Antigravity/Cursor
+
+## Contexto del Proyecto
+Este es un portafolio personal interactivo construido con Next.js 14, TypeScript y Tailwind CSS.
+
+## Stack Tecnológico
+- Next.js 14.2.18 con App Router
+- TypeScript 5.6.3
+- Tailwind CSS 3.4.14
+- Google Gemini API para chatbot
+- Supabase para base de datos
+- React 18.3.1
+
+## Estructura
+- `app/` - Next.js App Router (páginas y API routes)
+- `components/` - Componentes React organizados por funcionalidad
+- `lib/` - Utilidades (IA, Supabase, analytics)
+- `data/` - Datos del portafolio en JSON
+- `types/` - Definiciones TypeScript
+
+## Convenciones
+- Componentes en PascalCase
+- Client components marcados con 'use client'
+- Server components por defecto
+- Types en types/index.ts
+
+## Características Principales
+1. Chatbot de IA con Gemini API
+2. Sistema de likes con Supabase
+3. Gamificación con logros
+4. Analytics y tracking
+
+## Archivos Importantes
+- `.antigravity-context.md` - Contexto completo del proyecto
+- `data/portfolio.json` - Datos del portafolio
+- `lib/ai.ts` - Configuración de IA
+- `lib/supabase.ts` - Configuración de Supabase
+
