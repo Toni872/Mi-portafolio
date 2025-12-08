@@ -1,9 +1,14 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Crear cliente solo si las variables están disponibles
+// Durante el build, estas variables pueden no estar disponibles, por lo que Supabase será null
+export const supabase: SupabaseClient | null = 
+  supabaseUrl && supabaseAnonKey 
+    ? createClient(supabaseUrl, supabaseAnonKey)
+    : null
 
 // Tipos para la base de datos
 export interface Database {
@@ -61,6 +66,8 @@ export interface Database {
 
 // Funciones helper
 export async function getProjectLikes(projectId: string): Promise<number> {
+  if (!supabase) return 0
+  
   const { count } = await supabase
     .from('interactions')
     .select('*', { count: 'exact', head: true })
@@ -71,6 +78,8 @@ export async function getProjectLikes(projectId: string): Promise<number> {
 }
 
 export async function hasVisitorLiked(visitorId: string, projectId: string): Promise<boolean> {
+  if (!supabase) return false
+  
   const { data } = await supabase
     .from('interactions')
     .select('id')
@@ -83,6 +92,8 @@ export async function hasVisitorLiked(visitorId: string, projectId: string): Pro
 }
 
 export async function addLike(visitorId: string, projectId: string) {
+  if (!supabase) throw new Error('Supabase no está configurado')
+  
   const { error } = await supabase
     .from('interactions')
     .insert({
@@ -95,6 +106,8 @@ export async function addLike(visitorId: string, projectId: string) {
 }
 
 export async function removeLike(visitorId: string, projectId: string) {
+  if (!supabase) throw new Error('Supabase no está configurado')
+  
   const { error } = await supabase
     .from('interactions')
     .delete()
@@ -106,6 +119,8 @@ export async function removeLike(visitorId: string, projectId: string) {
 }
 
 export async function getComments(projectId: string) {
+  if (!supabase) return []
+  
   const { data, error } = await supabase
     .from('interactions')
     .select('*')
@@ -118,6 +133,8 @@ export async function getComments(projectId: string) {
 }
 
 export async function addComment(visitorId: string, projectId: string, content: string) {
+  if (!supabase) throw new Error('Supabase no está configurado')
+  
   const { error } = await supabase
     .from('interactions')
     .insert({
@@ -131,6 +148,8 @@ export async function addComment(visitorId: string, projectId: string, content: 
 }
 
 export async function trackView(visitorId: string, projectId?: string) {
+  if (!supabase) return
+  
   await supabase
     .from('interactions')
     .insert({
