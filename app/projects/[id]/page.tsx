@@ -95,7 +95,7 @@ export default function ProjectPage() {
                         fill
                         className="object-contain"
                       />
-                      {/* Video con miniatura */}
+                      {/* Video con miniatura - se carga solo si está disponible */}
                       <video
                         src={
                           isERPProject
@@ -104,12 +104,20 @@ export default function ProjectPage() {
                               ? "/videos/vilok-demo.mp4"
                               : "/videos/TasaDiv%20-%20Tasas%20de%20Cambio%20para%20Latinoam%C3%A9rica%20-%20Google%20Chrome%202025-11-11%2017-23-33.mp4"
                         }
-                        className="absolute inset-0 w-full h-full object-contain"
+                        className="absolute inset-0 w-full h-full object-contain opacity-0"
                         preload="metadata"
                         muted
                         playsInline
+                        onLoadedData={(e) => {
+                          // Si el video se carga correctamente, mostrar overlay de play
+                          e.currentTarget.style.opacity = '0'
+                        }}
+                        onError={(e) => {
+                          // Si el video no está disponible, ocultarlo completamente
+                          e.currentTarget.style.display = 'none'
+                        }}
                       />
-                      {/* Overlay con botón de play */}
+                      {/* Overlay con botón de play - solo si hay video disponible */}
                       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
                         <div className="bg-white/90 rounded-full p-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                           <Play className="h-12 w-12 text-gray-900 ml-1" fill="currentColor" />
@@ -130,6 +138,10 @@ export default function ProjectPage() {
                       autoPlay
                       playsInline
                       onEnded={() => setIsVideoPlaying(false)}
+                      onError={() => {
+                        // Si el video no está disponible, volver a la imagen
+                        setIsVideoPlaying(false)
+                      }}
                     />
                   ) : (
                     <Image

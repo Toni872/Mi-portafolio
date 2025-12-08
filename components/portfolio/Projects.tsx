@@ -50,46 +50,23 @@ export function Projects({ projects }: ProjectsProps) {
                 >
                   {project.image && (
                     <div className="relative rounded-t-lg overflow-hidden aspect-video">
-                      {project.id === 'sistema-erp' ? (
-                        <video
-                          src="/videos/erp-demo.mp4"
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="auto"
-                          poster={project.image}
-                        />
-                      ) : project.id === 'vilok-project' ? (
-                        <video
-                          src="/videos/vilok-demo.mp4"
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="auto"
-                          poster={project.image}
-                        />
-                      ) : project.id === 'tasadiv' ? (
-                        <video
-                          src="/videos/TasaDiv%20-%20Tasas%20de%20Cambio%20para%20Latinoam%C3%A9rica%20-%20Google%20Chrome%202025-11-11%2017-23-33.mp4"
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="auto"
-                          poster={project.image}
-                        />
-                      ) : (
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
+                      <Image
+                        src={project.image}
+                        alt={projectTranslations?.title || project.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      {/* Indicador de video para proyectos que tienen video */}
+                      {(project.id === 'sistema-erp' || project.id === 'vilok-project' || project.id === 'tasadiv') && (
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/30">
+                              <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
                       )}
                     </div>
                   )}
