@@ -44,6 +44,5 @@ yarn-error.log*
 next-env.d.ts
 
 # videos (too large for GitHub)
-# Los videos deben subirse manualmente a Vercel o usar Blob Storage
-# public/videos/*.mp4
-
+# Los videos deben subirse usando Vercel Blob Storage (ver SUBIR_VIDEOS.md)
+public/videos/*.mp4

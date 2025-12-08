@@ -1,0 +1,5 @@
+# Excluir videos del deploy - son demasiado grandes para Vercel
+# Se subirán usando Vercel Blob Storage por separado
+public/videos/*.mp4
+public/videos/
+

@@ -33,11 +33,13 @@ Los videos se pueden subir directamente cuando haces deploy en Vercel:
 ### Opción 2: Vercel Blob Storage (Recomendado para producción)
 
 1. **Instala Vercel Blob**:
+
    ```bash
    npm install @vercel/blob
    ```
 
 2. **Sube los videos** usando la API de Vercel Blob:
+
    ```javascript
    // scripts/upload-videos.js
    const { put } = require('@vercel/blob');
@@ -59,11 +61,13 @@ Los videos se pueden subir directamente cuando haces deploy en Vercel:
    - `app/projects/[id]/page.tsx`
 
    Cambia:
+
    ```tsx
    src="/videos/erp-demo.mp4"
    ```
-   
+
    Por:
+
    ```tsx
    src="https://res.cloudinary.com/tu-cuenta/video/upload/v1234567890/erp-demo.mp4"
    ```
@@ -86,6 +90,7 @@ Si prefieres usar YouTube:
 ## 📝 Pasos Inmediatos (Sin Videos)
 
 **El portafolio funciona perfectamente sin videos**. Actualmente:
+
 - ✅ Las miniaturas se muestran correctamente
 - ✅ Los proyectos son completamente funcionales
 - ✅ Los usuarios pueden ver toda la información
@@ -95,6 +100,7 @@ Los videos solo se muestran en la **página de detalle** de cada proyecto cuando
 ## 🔧 Código Actual
 
 El código está preparado para:
+
 1. **Mostrar siempre las imágenes** como miniaturas
 2. **Intentar cargar videos** solo en la página de detalle
 3. **Manejar errores gracefully** si los videos no están disponibles
@@ -112,6 +118,7 @@ Si quieres probar los videos localmente:
 ## 📌 Recomendación
 
 Para empezar rápido:
+
 1. **Deploy sin videos** (ya está hecho) - funciona perfectamente
 2. **Más tarde**, sube los videos usando **Vercel Blob Storage** o **Cloudinary**
 3. **Actualiza las rutas** cuando tengas las URLs de los videos
@@ -119,4 +126,3 @@ Para empezar rápido:
 ---
 
 ¿Necesitas ayuda con alguna de estas opciones? Puedo ayudarte a implementar cualquiera de ellas.
-
