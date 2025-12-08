@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Antonio Lloret - Portafolio',
     short_name: 'TL Portfolio',
-    description: 'Portafolio profesional de Antonio Lloret - Desarrollador Full Stack & AI Specialist',
+    description: 'Portafolio profesional de Antonio Lloret - Ingeniero de Software & AI Specialist',
     start_url: '/',
     display: 'standalone',
     background_color: '#0a0e27',

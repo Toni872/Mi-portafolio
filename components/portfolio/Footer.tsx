@@ -1,6 +1,9 @@
 'use client'
 
+import { useLanguage } from '@/contexts/LanguageContext'
+
 export function Footer() {
+  const { t } = useLanguage()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -9,7 +12,7 @@ export function Footer() {
       <div className="container relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-text-secondary text-sm">
-            © {currentYear} <span className="text-primary font-semibold">Toni Lloret</span>. Todos los derechos reservados.
+            © {currentYear} <span className="text-primary font-semibold">Antonio Lloret</span>. {t.footer.rights}
           </p>
 
           <div className="flex gap-6">

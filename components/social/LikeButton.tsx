@@ -30,27 +30,45 @@ export function LikeButton({ projectId, initialLikes = 0 }: LikeButtonProps) {
   }, [projectId])
 
   const handleLike = async () => {
-    if (liked || loading) return
+    if (loading) return
 
     setLoading(true)
     const visitorId = getVisitorId()
 
     try {
-      const response = await fetch('/api/likes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ projectId, visitorId })
-      })
+      if (liked) {
+        // Quitar like
+        const response = await fetch(
+          `/api/likes?projectId=${projectId}&visitorId=${visitorId}`,
+          {
+            method: 'DELETE'
+          }
+        )
 
-      const data = await response.json()
+        const data = await response.json()
 
-      if (data.success) {
-        setLiked(true)
-        setLikes(data.likes)
-        trackLike(projectId)
+        if (data.success) {
+          setLiked(false)
+          setLikes(data.likes)
+        }
+      } else {
+        // Dar like
+        const response = await fetch('/api/likes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ projectId, visitorId })
+        })
+
+        const data = await response.json()
+
+        if (data.success) {
+          setLiked(true)
+          setLikes(data.likes)
+          trackLike(projectId)
+        }
       }
     } catch (error) {
-      console.error('Error liking project:', error)
+      console.error('Error toggling like:', error)
     } finally {
       setLoading(false)
     }
@@ -62,14 +80,25 @@ export function LikeButton({ projectId, initialLikes = 0 }: LikeButtonProps) {
       size="sm"
       onClick={handleLike}
       disabled={loading}
-      className="flex items-center gap-2"
+      className={`flex items-center gap-2 transition-all duration-200 ${
+        liked 
+          ? 'hover:bg-red-500/10 hover:text-red-500' 
+          : 'hover:bg-gray-500/10 hover:text-gray-300'
+      }`}
+      title={liked ? 'Quitar like' : 'Dar like'}
     >
       <Heart
-        className={`h-5 w-5 transition-colors ${
-          liked ? 'fill-red-500 text-red-500' : 'text-gray-400'
+        className={`h-5 w-5 transition-all duration-200 ${
+          liked 
+            ? 'fill-red-500 text-red-500 scale-110' 
+            : 'text-gray-400 hover:text-red-400'
         }`}
       />
-      <span className="text-sm">{likes}</span>
+      <span className={`text-sm transition-colors duration-200 ${
+        liked ? 'text-red-500' : 'text-gray-400'
+      }`}>
+        {likes}
+      </span>
     </Button>
   )
 }

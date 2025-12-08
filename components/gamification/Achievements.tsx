@@ -5,6 +5,7 @@ import { Trophy, X } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { getVisitorId } from '@/lib/utils'
 import { trackAchievementUnlock } from '@/lib/analytics'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface Achievement {
   id: string
@@ -14,50 +15,40 @@ interface Achievement {
   unlocked: boolean
 }
 
-const ACHIEVEMENTS: Achievement[] = [
-  {
-    id: 'first_visit',
-    name: 'Primera Visita',
-    description: 'Visitaste el portafolio por primera vez',
-    icon: '🌟',
-    unlocked: false
-  },
-  {
-    id: 'view_all_projects',
-    name: 'Explorador',
-    description: 'Viste todos los proyectos',
-    icon: '🔍',
-    unlocked: false
-  },
-  {
-    id: 'first_like',
-    name: 'Fan',
-    description: 'Diste tu primer like',
-    icon: '❤️',
-    unlocked: false
-  },
-  {
-    id: 'chat_user',
-    name: 'Curioso',
-    description: 'Hiciste una pregunta al chatbot',
-    icon: '💬',
-    unlocked: false
-  }
-]
+function getAchievements(t: any): Achievement[] {
+  return [
+    {
+      id: 'first_visit',
+      name: t.achievements.firstVisit.name,
+      description: t.achievements.firstVisit.description,
+      icon: '🌟',
+      unlocked: false
+    },
+    {
+      id: 'view_all_projects',
+      name: t.achievements.explorer.name,
+      description: t.achievements.explorer.description,
+      icon: '🔍',
+      unlocked: false
+    }
+  ]
+}
 
 export function Achievements() {
-  const [achievements, setAchievements] = useState<Achievement[]>(ACHIEVEMENTS)
+  const { t } = useLanguage()
+  const [achievements, setAchievements] = useState<Achievement[]>(getAchievements(t))
   const [showNotification, setShowNotification] = useState<Achievement | null>(null)
 
   useEffect(() => {
     const visitorId = getVisitorId()
+    const currentAchievements = getAchievements(t)
     
     // Verificar logros desbloqueados
     const unlocked = localStorage.getItem(`achievements_${visitorId}`)
     if (unlocked) {
       const unlockedIds = JSON.parse(unlocked)
-      setAchievements(prev =>
-        prev.map(ach => ({
+      setAchievements(
+        currentAchievements.map(ach => ({
           ...ach,
           unlocked: unlockedIds.includes(ach.id)
         }))
@@ -65,14 +56,14 @@ export function Achievements() {
     }
 
     // Verificar nuevos logros
-    checkAchievements(visitorId)
-  }, [])
+    checkAchievements(visitorId, currentAchievements)
+  }, [t])
 
-  const checkAchievements = (visitorId: string) => {
+  const checkAchievements = (visitorId: string, achievementsList: Achievement[]) => {
     const actions = JSON.parse(localStorage.getItem(`actions_${visitorId}`) || '[]')
     const unlocked = JSON.parse(localStorage.getItem(`achievements_${visitorId}`) || '[]')
 
-    ACHIEVEMENTS.forEach(achievement => {
+    achievementsList.forEach(achievement => {
       if (unlocked.includes(achievement.id)) return
 
       let shouldUnlock = false
@@ -80,12 +71,6 @@ export function Achievements() {
       switch (achievement.id) {
         case 'first_visit':
           shouldUnlock = actions.includes('visit')
-          break
-        case 'first_like':
-          shouldUnlock = actions.includes('like')
-          break
-        case 'chat_user':
-          shouldUnlock = actions.includes('chat')
           break
       }
 
@@ -106,11 +91,25 @@ export function Achievements() {
       )
     )
 
-    setShowNotification(achievement)
+    // Usar el achievement actualizado con las traducciones correctas
+    const currentAchievements = getAchievements(t)
+    const updatedAchievement = currentAchievements.find(a => a.id === achievement.id) || achievement
+    setShowNotification(updatedAchievement)
     trackAchievementUnlock(achievement.id)
 
     setTimeout(() => setShowNotification(null), 5000)
   }
+
+  // Actualizar notificación cuando cambie el idioma
+  useEffect(() => {
+    if (showNotification) {
+      const currentAchievements = getAchievements(t)
+      const updatedAchievement = currentAchievements.find(a => a.id === showNotification.id)
+      if (updatedAchievement) {
+        setShowNotification(updatedAchievement)
+      }
+    }
+  }, [t, showNotification?.id])
 
   if (!showNotification) return null
 
@@ -121,7 +120,7 @@ export function Achievements() {
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <Trophy className="h-5 w-5 text-yellow-500" />
-            <h4 className="font-semibold text-white">¡Logro Desbloqueado!</h4>
+            <h4 className="font-semibold text-white">{t.achievements.unlocked}</h4>
           </div>
           <p className="font-medium text-primary">{showNotification.name}</p>
           <p className="text-sm text-gray-400 mt-1">{showNotification.description}</p>

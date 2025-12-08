@@ -43,3 +43,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# videos (too large for GitHub)
+public/videos/*.mp4
+

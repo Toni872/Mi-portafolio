@@ -11,3 +11,9 @@ npm test -- --coverage
 
 echo "✅ Pre-push checks passed!"
 
+
+
+
+
+
+

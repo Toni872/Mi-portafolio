@@ -1,0 +1,174 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "skills": "Stack tecnológico",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "viewWork": "Ver mi trabajo",
+    "contactMe": "Contáctame",
+    "downloadCV": "Descargar CV",
+    "skill": "Ingeniero de Software"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "text": "Ingeniero de Software especializado en IA, Python y TypeScript con experiencia en desarrollo full stack. Experiencia en arquitecturas backend con FastAPI y Node.js, desarrollo frontend con React y Next.js, y gestión de bases de datos PostgreSQL. Especializado en diseño de sistemas escalables, integración de servicios cloud (Supabase, Stripe, Cloudflare R2) y containerización con Docker. Comprometido con la excelencia técnica, código limpio y mejores prácticas de ingeniería de software.",
+    "hobby": "Cuando no estoy programando, me encontrarás explorando nuevas tecnologías, contribuyendo a proyectos open source, o compartiendo conocimiento con la comunidad de desarrolladores."
+  },
+  "experience": {
+    "title": "Experiencia",
+    "responsibilities": "Responsabilidades",
+    "items": {
+      "vilok": {
+        "company": "Vilok",
+        "period": "Proyecto Freelance - 2 meses",
+        "description": "Desarrollo completo del marketplace Vilok para alquiler de espacios de trabajo y eventos. Proyecto freelance para startup que requería una plataforma escalable con sistema de reservas en tiempo real, integración de pagos, gestión de usuarios y experiencia de usuario optimizada. Arquitectura moderna construida con Next.js 14, TypeScript, Supabase y Stripe.",
+        "responsibilities": [
+          "Desarrollo frontend completo con Next.js 14, React y TypeScript",
+          "Implementación de más de 30 componentes React reutilizables",
+          "Integración con Supabase para backend PostgreSQL y autenticación OAuth",
+          "Sistema de reservas en tiempo real con gestión de disponibilidad",
+          "Integración de pagos seguros con Stripe",
+          "Implementación de RLS (Row Level Security) para seguridad de datos",
+          "Sistema de mensajería entre anfitriones y huéspedes",
+          "Búsqueda geográfica avanzada con PostGIS",
+          "Dashboards basados en roles (host/guest) con métricas en tiempo real",
+          "Integración con Cloudflare R2 para almacenamiento de imágenes",
+          "Sistema de reseñas y valoraciones post-reserva",
+          "Optimización de rendimiento y experiencia de usuario"
+        ]
+      },
+      "erp-system": {
+        "company": "Sistema ERP Empresarial",
+        "period": "Proyecto Personal - 2025",
+        "description": "Desarrollo completo de un sistema ERP empresarial con arquitectura modular full-stack. Backend desarrollado con Python 3.11.9 y FastAPI 0.121.2, implementando API REST con arquitectura MVC. Frontend construido con Next.js 15.5.3, React 19.1.0 y TypeScript 5.9.2, utilizando Tailwind CSS 4.1.13 para diseño responsive. Base de datos PostgreSQL 15 containerizada con Docker Compose. Sistema escalable diseñado para gestión empresarial con múltiples módulos integrados.",
+        "responsibilities": [
+          "Diseño y desarrollo de arquitectura modular full-stack escalable",
+          "Backend con Python, FastAPI y arquitectura REST API MVC",
+          "Frontend con Next.js 15, React 19 y TypeScript",
+          "Implementación de módulos: Recursos Humanos e Inventario con CRUD completo",
+          "Configuración y gestión de base de datos PostgreSQL 15 con Docker Compose",
+          "Documentación interactiva de API en /docs con Swagger/OpenAPI",
+          "28 módulos implementados con más de 15,000 líneas de código",
+          "50+ endpoints REST para gestión empresarial",
+          "Arquitectura preparada para expansión modular y escalabilidad",
+          "Optimización de rendimiento y buenas prácticas de desarrollo",
+          "Testing y validación de funcionalidades críticas"
+        ]
+      },
+      "abisysa": {
+        "company": "Abisysa",
+        "period": "Prácticas Profesionales - 3 meses",
+        "description": "Prácticas profesionales en empresa de ingeniería especializada en vehículos guiados automatizados (AGV) y automatización industrial con más de 30 años de experiencia. Líder en soluciones de transporte automatizado y optimización logística con tecnología láser SLAM. Desarrollo de interfaces con Python para maquinaria industrial, optimización software-hardware, scripts de automatización, testing funcional y soporte técnico en sistemas críticos de producción.",
+        "responsibilities": [
+          "Desarrollo de interfaces con Python para maquinaria industrial",
+          "Optimización de integración software-hardware en sistemas críticos",
+          "Implementación de scripts de automatización para procesos industriales",
+          "Testing funcional y validación de sistemas de producción",
+          "Soporte técnico en sistemas críticos de la empresa"
+        ]
+      }
+    }
+  },
+  "education": {
+    "title": "Educación",
+    "items": {
+      "python-pcap": {
+        "title": "Programa Profesional Desarrollo Python",
+        "subtitle": "Escuela Musk & Python Institute",
+        "description": "Certificación profesional en desarrollo Python con enfoque en mejores prácticas y arquitecturas escalables.",
+        "date": "Nov 2023"
+      },
+      "flask": {
+        "title": "Especialización en Flask con Python",
+        "subtitle": "Escuela Musk & Python Institute",
+        "description": "Certificación ARP (UE) - High Quality Online Education. Especialización en desarrollo web con Flask y Python.",
+        "date": "Mar 2024"
+      }
+    }
+  },
+  "projects": {
+    "title": "Proyectos",
+    "liveApp": "Aplicación en vivo",
+    "learnMore": "Saber más",
+    "code": "Código",
+    "hideComments": "Ocultar comentarios",
+    "viewComments": "Ver comentarios",
+    "viewDetails": "Ver detalles",
+    "description": "Descripción",
+    "technologies": "Tecnologías",
+    "stats": "Estadísticas",
+    "info": "Información",
+    "repository": "Repositorio",
+    "notFound": "Proyecto no encontrado",
+    "details": {
+      "sistema-erp": {
+        "title": "Sistema ERP Empresarial",
+        "subtitle": "Sistema de gestión empresarial full-stack con integración de IA",
+        "description": "Sistema ERP completo desarrollado con arquitectura modular full-stack. Backend construido con Python 3.11.9 y FastAPI 0.121.2, implementando API REST con arquitectura MVC (Models, Views, State). Frontend desarrollado con Next.js 15.5.3, React 19.1.0 y TypeScript 5.9.2, utilizando Tailwind CSS 4.1.13 para estilos. Base de datos PostgreSQL 15 configurada con Docker Compose. Módulos implementados: Recursos Humanos (/hr) para gestión de empleados e Inventario (/inventory) para gestión de productos. Arquitectura modular lista para escalar, con almacenamiento en memoria preparado para migración a base de datos. Endpoints API disponibles: GET/POST/DELETE para HR e Inventario. Documentación interactiva disponible en /docs. Servidores backend (FastAPI) en puerto 8000 y frontend (Next.js) en puerto 3000, ambos operativos y listos para desarrollo y pruebas."
+      },
+      "vilok-project": {
+        "title": "Marketplace Vilok",
+        "subtitle": "Marketplace para alquiler de espacios de trabajo y eventos",
+        "description": "Marketplace completo para alquiler de espacios de trabajo y eventos construido con Next.js 14 y TypeScript. Integración con Supabase para backend PostgreSQL, Stripe para pagos y Cloudflare R2 para imágenes. Más de 30 componentes React, sistema de reservas en tiempo real, pagos seguros, mensajería anfitrión-huésped, reseñas post-reserva. Arquitectura escalable con autenticación OAuth, RLS, búsqueda geográfica con PostGIS y dashboards basados en roles."
+        },
+        "tasadiv": {
+          "title": "TasaDiv Plataforma de Divisas",
+          "subtitle": "Convertidor de divisas LATAM en tiempo real con PWA y JavaScript vanilla",
+          "description": "Plataforma fintech ligera para conversión de divisas en tiempo real enfocada en LATAM, construida solo con HTML5, CSS3 y JavaScript vanilla (ES6+). Cubre 18 monedas latinoamericanas con conversión bidireccional instantánea, actualización al hacer clic en la moneda y formato de número localizado con Intl.NumberFormat. Diseño minimalista tipo fintech con tema oscuro y acentos rojos, 100% responsive, sin scroll vertical y UX mobile-first. Implementada como PWA sin backend utilizando ExchangeRate-API, Service Worker con estrategia cache-first, soporte offline e instalación en dispositivos, desplegada en edge hosting de Vercel. Optimizaciones de rendimiento con aceleración GPU en CSS, debouncing, lazy loading y CSS crítico inline, logrando Lighthouse ~95/100 y LCP inferior a 2,5s en conexiones 3G."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes una pregunta o quieres trabajar juntos? Déjame tus datos y te responderé lo antes posible.",
+    "connect": "Conecta conmigo",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "sendMessage": "Enviar mensaje",
+    "sending": "Enviando...",
+    "sent": "¡Enviado!"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  },
+  "common": {
+    "scrollToAbout": "Desplazarse a la sección sobre mí",
+    "selectLanguage": "Seleccionar idioma",
+    "toggleMenu": "Abrir/cerrar menú",
+    "backHome": "Volver al inicio",
+    "backToProjects": "Volver a proyectos"
+  },
+  "comments": {
+    "title": "Comentarios",
+    "placeholder": "Escribe un comentario...",
+    "characters": "caracteres",
+    "noComments": "No hay comentarios aún. ¡Sé el primero en comentar!",
+    "visitor": "Visitante",
+    "now": "Ahora mismo",
+    "minutesAgo": "Hace {minutes} minuto{plural}",
+    "hoursAgo": "Hace {hours} hora{plural}",
+    "daysAgo": "Hace {days} día{plural}"
+  },
+  "achievements": {
+    "unlocked": "¡Logro Desbloqueado!",
+    "firstVisit": {
+      "name": "Primera Visita",
+      "description": "Visitaste el portafolio por primera vez"
+    },
+    "explorer": {
+      "name": "Explorador",
+      "description": "Viste todos los proyectos"
+    },
+    "fan": {
+      "name": "Fan",
+      "description": "Diste tu primer like"
+    }
+  }
+}
+

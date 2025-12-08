@@ -2,20 +2,20 @@
 
 import { Project } from '@/types'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
-import { LikeButton } from '@/components/social/LikeButton'
-import { Comments } from '@/components/social/Comments'
-import { Github, ExternalLink } from 'lucide-react'
+import { Github, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { trackProjectView } from '@/lib/analytics'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
+import Link from 'next/link'
 
 interface ProjectsProps {
   projects: Project[]
 }
 
 export function Projects({ projects }: ProjectsProps) {
-  const [expandedProject, setExpandedProject] = useState<string | null>(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     projects.forEach(project => {
@@ -25,126 +25,91 @@ export function Projects({ projects }: ProjectsProps) {
     })
   }, [projects])
 
-  const featuredProject = projects[0]
-  const otherProjects = projects.slice(1)
-
   return (
-    <section id="projects" className="section">
-      <div className="container">
+    <section id="projects" className="section relative">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-50"></div>
+      
+      <div className="container relative z-10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12">
-            Projects
-          </h2>
+          <div className="relative mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
+              {t.projects.title}
+            </h2>
+            <div className="absolute bottom-0 left-0 w-24 h-1 bg-gradient-to-r from-primary to-transparent"></div>
+          </div>
 
-          {/* Featured Project */}
-          {featuredProject && (
-            <div className="mb-16">
-              <Card className="group relative hover:border-primary transition-all duration-500 overflow-hidden bg-gradient-to-br from-surface/50 to-surface hover:shadow-[0_0_40px_rgba(34,197,94,0.5)] border-2 border-border hover:border-primary/50">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="grid md:grid-cols-2 gap-0 relative z-10">
-                  {featuredProject.image && (
-                    <div className="relative h-64 md:h-full overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <Image
-                        src={featuredProject.image}
-                        alt={featuredProject.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                    </div>
-                  )}
-                  <div className="p-8 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <CardTitle className="text-3xl mb-2 bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent group-hover:from-primary-light group-hover:to-accent transition-all duration-300">
-                            {featuredProject.title}
-                          </CardTitle>
-                          <CardDescription className="text-lg text-text-secondary">
-                            {featuredProject.subtitle}
-                          </CardDescription>
-                        </div>
-                        {featuredProject.id && <LikeButton projectId={featuredProject.id} />}
-                      </div>
-
-                      <p className="text-text-secondary leading-relaxed mb-6">
-                        {featuredProject.description}
-                      </p>
-
-                      {featuredProject.technologies && (
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {featuredProject.technologies.slice(0, 6).map((tech, techIndex) => (
-                            <span
-                              key={techIndex}
-                              className="px-3 py-1 bg-surface/80 backdrop-blur-sm rounded-md text-sm text-text-secondary border border-primary/20 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
-                            >
-                              {tech.name}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="flex gap-3">
-                      {featuredProject.url && (
-                        <Button asChild variant="default" size="sm">
-                          <a href={featuredProject.url} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Live app
-                          </a>
-                        </Button>
-                      )}
-                      {featuredProject.github && (
-                        <Button asChild variant="outline" size="sm">
-                          <a href={featuredProject.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4 mr-2" />
-                            Learn more
-                          </a>
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          )}
-
-          {/* Other Projects */}
-          {otherProjects.length > 0 && (
-            <div className="grid md:grid-cols-2 gap-6">
-              {otherProjects.map((project, index) => (
+          {/* Projects Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, index) => {
+              const projectTranslations = t.projects.details[project.id as keyof typeof t.projects.details]
+              return (
                 <Card
-                  key={index}
-                  className="group hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                  key={project.id || index}
+                  className="group hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 flex flex-col"
                 >
                   {project.image && (
-                    <div className="relative h-48 rounded-t-lg overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
+                    <div className="relative rounded-t-lg overflow-hidden aspect-video">
+                      {project.id === 'sistema-erp' ? (
+                        <video
+                          src="/videos/erp-demo.mp4"
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="auto"
+                          poster={project.image}
+                        />
+                      ) : project.id === 'vilok-project' ? (
+                        <video
+                          src="/videos/vilok-demo.mp4"
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="auto"
+                          poster={project.image}
+                        />
+                      ) : project.id === 'tasadiv' ? (
+                        <video
+                          src="/videos/TasaDiv%20-%20Tasas%20de%20Cambio%20para%20Latinoam%C3%A9rica%20-%20Google%20Chrome%202025-11-11%2017-23-33.mp4"
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="auto"
+                          poster={project.image}
+                        />
+                      ) : (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )}
                     </div>
                   )}
                   <CardHeader>
                     <div className="flex items-start justify-between">
-                      <div>
-                        <CardTitle className="text-2xl">{project.title}</CardTitle>
-                        <CardDescription className="text-base mt-1">
-                          {project.subtitle}
+                      <div className="flex-1">
+                        <CardTitle className="text-xl mb-1">{projectTranslations?.title || project.title}</CardTitle>
+                        <CardDescription className="text-sm">
+                          {projectTranslations?.subtitle || project.subtitle}
                         </CardDescription>
                       </div>
-                      {project.id && <LikeButton projectId={project.id} />}
                     </div>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-gray-300 leading-relaxed line-clamp-3">
-                      {project.description}
+                  <CardContent className="flex-1 flex flex-col">
+                    <p className="text-gray-300 leading-relaxed line-clamp-3 mb-4 text-sm">
+                      {projectTranslations?.description || project.description}
                     </p>
 
                     {project.technologies && project.technologies.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 mb-4">
                         {project.technologies.slice(0, 4).map((tech, techIndex) => (
                           <span
                             key={techIndex}
@@ -156,45 +121,42 @@ export function Projects({ projects }: ProjectsProps) {
                       </div>
                     )}
 
-                    <div className="flex gap-2 pt-2">
-                      {project.url && (
-                        <Button asChild variant="outline" size="sm">
-                          <a href={project.url} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Live app
-                          </a>
+                    <div className="mt-auto pt-4 flex flex-wrap gap-2">
+                      {project.id && (
+                        <Button asChild variant="default" size="sm" className="flex-1 group hover:!text-red-500">
+                          <Link 
+                            href={`/projects/${project.id}`} 
+                            className="group-hover:!text-red-500 transition-colors text-[#0a0f0a]"
+                            style={{ color: '#0a0f0a' }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.color = '#ef4444'
+                              const arrow = e.currentTarget.querySelector('svg')
+                              if (arrow) arrow.style.color = '#ef4444'
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.color = '#0a0f0a'
+                              const arrow = e.currentTarget.querySelector('svg')
+                              if (arrow) arrow.style.color = '#0a0f0a'
+                            }}
+                          >
+                            <span className="text-[#0a0f0a] group-hover:text-red-500">{t.projects.viewDetails}</span>
+                            <ArrowRight className="h-4 w-4 ml-2 text-[#0a0f0a] group-hover:text-red-500" />
+                          </Link>
                         </Button>
                       )}
                       {project.github && (
                         <Button asChild variant="outline" size="sm">
                           <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4 mr-2" />
-                            Code
+                            <Github className="h-4 w-4" />
                           </a>
                         </Button>
                       )}
-                      {project.id && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => setExpandedProject(
-                            expandedProject === project.id ? null : (project.id ?? null)
-                          )}
-                        >
-                          {expandedProject === project.id ? 'Ocultar' : 'Ver'} comentarios
-                        </Button>
-                      )}
                     </div>
-                    {project.id && expandedProject === project.id && (
-                      <div className="mt-4 pt-4 border-t border-border">
-                        <Comments projectId={project.id} />
-                      </div>
-                    )}
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          )}
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>

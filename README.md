@@ -1,17 +1,16 @@
 # 🚀 Portafolio Toni Lloret
 
-Portafolio profesional con características avanzadas: IA, gamificación, analytics y sistema de agentes autónomos.
+Portafolio profesional con diseño moderno y características esenciales.
 
 ## ✨ Características
 
-- 🤖 **Chatbot de IA** integrado con Google Gemini
 - 🎮 **Sistema de Gamificación** con logros y recompensas
-- 📊 **Dashboard de Analytics** en tiempo real
-- 💬 **Sistema Social** con likes y comentarios
+- 💬 **Sistema Social** con comentarios en proyectos
 - 🌓 **Modo Oscuro/Claro** con persistencia
 - 📱 **PWA** - Instalable como app
-- 🤖 **Sistema de Agentes Autónomos** con monitoreo en tiempo real
 - 🎨 **Diseño Moderno** con estética verde profesional
+- 🎬 **Videos de Proyectos** con demos interactivas
+- 🌍 **Multiidioma** Español/Inglés
 
 ## 🛠️ Tecnologías
 
@@ -19,7 +18,6 @@ Portafolio profesional con características avanzadas: IA, gamificación, analyt
 - **TypeScript** - Tipado estático
 - **Tailwind CSS** - Estilos
 - **Supabase** - Backend y base de datos
-- **Google Gemini** - IA
 - **Framer Motion** - Animaciones
 - **Jest + React Testing Library** - Testing
 
@@ -45,7 +43,6 @@ Abre [http://localhost:3002](http://localhost:3002) en tu navegador.
 
 1. **Variables de Entorno** - Ver `SETUP.md` para detalles
 2. **Supabase** - Configuración en `SETUP.md`
-3. **Google Gemini API** - Obtén tu API key en [Google AI Studio](https://makersuite.google.com/app/apikey)
 
 ## 📚 Documentación
 

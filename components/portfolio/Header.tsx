@@ -2,50 +2,106 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import dynamic from 'next/dynamic'
-
-const ThemeToggle = dynamic(() => import('@/components/ui/ThemeToggle').then(mod => ({ default: mod.ThemeToggle })), {
-  ssr: false
-})
+import { useLanguage } from '@/contexts/LanguageContext'
+import { LanguageSelector } from '@/components/ui/LanguageSelector'
+import { HeaderMatrixBackground } from '@/components/ui/HeaderMatrixBackground'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('hero')
+  const pathname = usePathname()
+  const router = useRouter()
+  const { t } = useLanguage()
+
+  const scrollToSection = (hash: string) => {
+    const element = document.querySelector(hash)
+    if (element) {
+      const headerOffset = 80 // Altura del header
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  const navLinks = [
+    { href: '/', label: t.nav.home, isHash: false },
+    { href: '/#about', label: t.nav.about, isHash: true },
+    { href: '/#skills', label: t.nav.skills, isHash: true },
+    { href: '/#experience', label: t.nav.experience, isHash: true },
+    { href: '/#education', label: t.nav.education, isHash: true },
+    { href: '/#projects', label: t.nav.projects, isHash: true },
+    { href: '/#contact', label: t.nav.contact, isHash: true },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
-
-      // Update active section based on scroll position
-      const sections = ['hero', 'about', 'skills', 'projects', 'contact']
-      const current = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
-        }
-        return false
-      })
-      if (current) setActiveSection(current)
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navLinks = [
-    { href: '#hero', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#contact', label: 'Contact' },
-  ]
+  // Manejar scroll cuando la página carga con un hash
+  useEffect(() => {
+    const handleHashScroll = () => {
+      if (pathname === '/' && window.location.hash) {
+        const hash = window.location.hash
+        // Esperar a que el DOM esté completamente cargado
+        setTimeout(() => {
+          scrollToSection(hash)
+        }, 300)
+      }
+    }
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    element?.scrollIntoView({ behavior: 'smooth' })
+    // Ejecutar inmediatamente si ya hay un hash
+    handleHashScroll()
+
+    // También escuchar cambios en el hash
+    window.addEventListener('hashchange', handleHashScroll)
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashScroll)
+    }
+  }, [pathname])
+
+  const handleNavClick = (href: string, isHash: boolean, e: React.MouseEvent) => {
+    e.preventDefault()
     setIsMobileMenuOpen(false)
+
+    if (href === '/') {
+      // Si es el link de inicio, navegar a la página principal y scroll al top
+      if (pathname !== '/') {
+        router.push('/')
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      return
+    }
+
+    if (isHash) {
+      const hash = href.split('#')[1]
+      
+      if (pathname === '/') {
+        // Si ya estamos en la página principal, solo hacer scroll
+        scrollToSection(`#${hash}`)
+        // Actualizar el hash en la URL sin recargar
+        window.history.pushState(null, '', `#${hash}`)
+      } else {
+        // Si estamos en otra página, navegar primero y luego hacer scroll
+        router.push(`/#${hash}`)
+        // El useEffect manejará el scroll cuando la página cargue
+      }
+    } else {
+      // Para otros links sin hash, usar navegación de Next.js
+      router.push(href)
+    }
   }
 
   return (
@@ -55,51 +111,65 @@ export function Header() {
           : 'bg-transparent'
         }`}
     >
-      <div className="container">
+      {isScrolled && <HeaderMatrixBackground isVisible={isScrolled} />}
+      <div className="container relative z-10">
         <div className="flex items-center justify-between h-20">
-          {/* Enhanced Logo with Glow */}
-          <a
-            href="#hero"
+          {/* Professional Logo */}
+          <Link
+            href="/#projects"
             onClick={(e) => {
               e.preventDefault()
-              scrollToSection('#hero')
+              if (pathname === '/') {
+                scrollToSection('#projects')
+                window.history.pushState(null, '', '#projects')
+              } else {
+                router.push('/#projects')
+              }
             }}
-            className="group relative text-2xl font-bold text-primary hover:text-primary-light transition-all duration-300"
+            className="group relative flex items-center"
           >
-            <span className="relative z-10">TL</span>
-            <span className="absolute inset-0 text-2xl font-bold text-primary/30 blur-md group-hover:text-primary/50 transition-all -z-10">
-              TL
+            <span className="text-xl font-bold text-text-secondary group-hover:text-red-500 transition-colors duration-300">
+              Antonio Lloret
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection(link.href)
-                }}
-                className={`text-sm font-medium transition-colors hover:text-primary-light ${activeSection === link.href.slice(1)
-                    ? 'text-primary-light'
-                    : 'text-gray-400'
-                  }`}
-              >
-                {link.label}
-              </a>
-            ))}
-            <ThemeToggle />
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link, index) => {
+              const isActive = pathname === link.href || (link.href === '/' && pathname === '/')
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(link.href, link.isHash, e)}
+                  className="group relative px-4 py-2 rounded-lg transition-all duration-300"
+                >
+                  <span className={`relative z-10 text-sm font-medium transition-all duration-300 ${
+                    isActive
+                      ? 'text-primary'
+                      : 'text-gray-400 group-hover:text-text'
+                  }`}>
+                    {link.label}
+                  </span>
+                  {isActive && (
+                    <div className="absolute inset-0 bg-primary/10 rounded-lg border border-primary/30"></div>
+                  )}
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent group-hover:w-3/4 transition-all duration-300"></div>
+                </Link>
+              )
+            })}
+            <div className="ml-4 pl-4 border-l border-border/50">
+              <LanguageSelector />
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
+            <LanguageSelector />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-300 hover:text-primary-light transition-colors"
-              aria-label="Toggle menu"
+              className="relative p-2 rounded-lg text-gray-300 hover:text-primary-light hover:bg-primary/10 transition-all duration-300"
+              aria-label={t.common.toggleMenu}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -108,24 +178,28 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    scrollToSection(link.href)
-                  }}
-                  className={`text-sm font-medium transition-colors hover:text-primary-light ${activeSection === link.href.slice(1)
-                      ? 'text-primary-light'
-                      : 'text-gray-400'
+          <nav className="md:hidden py-4 border-t border-border/50">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (link.isHash && pathname === '/')
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(link.href, link.isHash, e)}
+                    className={`relative px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                      isActive
+                        ? 'text-primary bg-primary/10 border border-primary/30'
+                        : 'text-gray-400 hover:text-text hover:bg-surface/50'
                     }`}
-                >
-                  {link.label}
-                </a>
-              ))}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
+                    )}
+                  </Link>
+                )
+              })}
             </div>
           </nav>
         )}

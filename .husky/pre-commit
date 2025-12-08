@@ -14,3 +14,9 @@ npm test -- --passWithNoTests --bail
 
 echo "✅ Pre-commit checks passed!"
 
+
+
+
+
+
+

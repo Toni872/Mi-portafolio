@@ -8,6 +8,7 @@ import { MessageSquare, Send, User } from 'lucide-react'
 import { getComments, addComment } from '@/lib/supabase'
 import { getVisitorId } from '@/lib/utils'
 import { trackEvent } from '@/lib/analytics'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface Comment {
   id: string
@@ -21,6 +22,7 @@ interface CommentsProps {
 }
 
 export function Comments({ projectId }: CommentsProps) {
+  const { t, language } = useLanguage()
   const [comments, setComments] = useState<Comment[]>([])
   const [newComment, setNewComment] = useState('')
   const [loading, setLoading] = useState(false)
@@ -84,11 +86,32 @@ export function Comments({ projectId }: CommentsProps) {
     const hours = Math.floor(minutes / 60)
     const days = Math.floor(hours / 24)
 
-    if (minutes < 1) return 'Ahora mismo'
-    if (minutes < 60) return `Hace ${minutes} minuto${minutes > 1 ? 's' : ''}`
-    if (hours < 24) return `Hace ${hours} hora${hours > 1 ? 's' : ''}`
-    if (days < 7) return `Hace ${days} día${days > 1 ? 's' : ''}`
-    return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+    if (minutes < 1) return t.comments.now
+    if (minutes < 60) {
+      const plural = minutes > 1 ? (language === 'es' ? 's' : 's') : ''
+      if (language === 'es') {
+        return `Hace ${minutes} minuto${plural}`
+      } else {
+        return `${minutes} minute${plural} ago`
+      }
+    }
+    if (hours < 24) {
+      const plural = hours > 1 ? (language === 'es' ? 's' : 's') : ''
+      if (language === 'es') {
+        return `Hace ${hours} hora${plural}`
+      } else {
+        return `${hours} hour${plural} ago`
+      }
+    }
+    if (days < 7) {
+      const plural = days > 1 ? (language === 'es' ? 's' : 's') : ''
+      if (language === 'es') {
+        return `Hace ${days} día${plural}`
+      } else {
+        return `${days} day${plural} ago`
+      }
+    }
+    return date.toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { day: 'numeric', month: 'short', year: 'numeric' })
   }
 
   const getVisitorInitial = (visitorId: string) => {
@@ -99,7 +122,7 @@ export function Comments({ projectId }: CommentsProps) {
     <Card className="p-6">
       <div className="flex items-center gap-2 mb-4">
         <MessageSquare className="h-5 w-5 text-primary" />
-        <h3 className="text-lg font-semibold">Comentarios ({comments.length})</h3>
+        <h3 className="text-lg font-semibold">{t.comments.title} ({comments.length})</h3>
       </div>
 
       {/* Formulario de comentario */}
@@ -108,7 +131,7 @@ export function Comments({ projectId }: CommentsProps) {
           <Input
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Escribe un comentario..."
+            placeholder={t.comments.placeholder}
             className="flex-1"
             maxLength={500}
           />
@@ -121,7 +144,7 @@ export function Comments({ projectId }: CommentsProps) {
           </Button>
         </div>
         <p className="text-xs text-gray-400 mt-1">
-          {newComment.length}/500 caracteres
+          {newComment.length}/500 {t.comments.characters}
         </p>
       </form>
 
@@ -143,7 +166,7 @@ export function Comments({ projectId }: CommentsProps) {
       ) : comments.length === 0 ? (
         <div className="text-center py-8 text-gray-400">
           <MessageSquare className="h-12 w-12 mx-auto mb-2 opacity-50" />
-          <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+          <p>{t.comments.noComments}</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -157,7 +180,7 @@ export function Comments({ projectId }: CommentsProps) {
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-sm font-medium text-gray-300">
-                    Visitante {getVisitorInitial(comment.visitor_id)}
+                    {t.comments.visitor} {getVisitorInitial(comment.visitor_id)}
                   </span>
                   <span className="text-xs text-gray-500">
                     {formatDate(comment.created_at)}

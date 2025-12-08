@@ -56,8 +56,12 @@ html {
   overflow-x: hidden;
 }
 
+/* Cursor personalizado - NO ocultar por defecto, solo cuando el componente esté activo */
+/* El componente CustomCursor manejará la ocultación del cursor del sistema */
+/* Esto asegura que siempre haya un cursor visible como fallback */
+
 body {
-  font-family: var(--font-body);
+  font-family: 'Consolas', 'Lucida Console', 'Courier New', 'Monaco', monospace;
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
@@ -65,14 +69,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Custom Cursor - Futuristic Design */
+
 /* Tailwind compatibility */
 @layer base {
   :root {
-    --background: var(--color-bg);
-    --foreground: var(--color-text);
-  }
-  
-  .dark {
     --background: var(--color-bg);
     --foreground: var(--color-text);
   }
@@ -80,7 +81,7 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
+  font-family: 'Consolas', 'Lucida Console', 'Courier New', 'Monaco', monospace;
   font-weight: 700;
   line-height: 1.2;
   color: var(--color-text);
@@ -255,6 +256,15 @@ a:hover {
   }
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes shimmer {
   0% {
     background-position: -1000px 0;
@@ -283,6 +293,16 @@ a:hover {
 
 .slide-in-right {
   animation: slideInRight var(--transition-slow) ease-out;
+}
+
+.tech-scroll-animation {
+  animation: scroll 30s linear infinite;
+  display: flex;
+  width: fit-content;
+}
+
+.tech-scroll-animation:hover {
+  animation-play-state: paused;
 }
 
 /* Button Styles */
@@ -447,4 +467,10 @@ a:hover {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Estilo para botón de contacto cuando está activo */
+#contact button[type="submit"]:active .contact-active-overlay,
+button[type="submit"]:active .contact-active-overlay {
+  opacity: 1 !important;
 }

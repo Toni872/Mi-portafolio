@@ -12,27 +12,35 @@ export interface Project {
   image: string;
   url: string;
   github: string;
+  vercel?: string;
   detail_url?: string;
   id?: string;
   likes?: number;
   comments?: Comment[];
+  stats?: {
+    bundle?: string;
+    load?: string;
+    api?: string;
+    browsers?: string;
+  };
 }
 
 export interface Experience {
-  icon: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  date: string;
-  technologies?: Technology[];
+  id?: string;
+  company?: string;
+  position?: string;
+  period?: string;
+  description?: string;
+  responsibilities?: string[];
 }
 
 export interface Training {
-  icon: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  date: string;
+  id?: string;
+  icon?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  date?: string;
   certificate?: string;
 }
 

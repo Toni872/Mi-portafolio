@@ -7,17 +7,7 @@
 cp .env.example .env.local
 ```
 
-### 1.2 Configurar Google Gemini API (Para Chatbot IA)
-
-1. Ve a [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Inicia sesión con tu cuenta de Google
-3. Crea una nueva API key
-4. Copia la API key y pégala en `.env.local`:
-   ```
-   GEMINI_API_KEY=tu_api_key_aqui
-   ```
-
-### 1.3 Configurar Supabase (Para Likes, Comentarios y Analytics)
+### 1.2 Configurar Supabase (Para Comentarios)
 
 #### Opción A: Crear proyecto nuevo en Supabase
 
@@ -65,36 +55,21 @@ CREATE TABLE IF NOT EXISTS achievements (
   UNIQUE(visitor_id, achievement_id)
 );
 
--- Tabla de analytics (opcional)
-CREATE TABLE IF NOT EXISTS analytics (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  visitor_id TEXT,
-  event_type TEXT NOT NULL,
-  event_data JSONB,
-  page_path TEXT,
-  user_agent TEXT,
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
 -- Índices para mejor performance
 CREATE INDEX IF NOT EXISTS idx_interactions_project ON interactions(project_id);
 CREATE INDEX IF NOT EXISTS idx_interactions_visitor ON interactions(visitor_id);
 CREATE INDEX IF NOT EXISTS idx_interactions_type ON interactions(interaction_type);
 CREATE INDEX IF NOT EXISTS idx_achievements_visitor ON achievements(visitor_id);
-CREATE INDEX IF NOT EXISTS idx_analytics_event_type ON analytics(event_type);
-CREATE INDEX IF NOT EXISTS idx_analytics_created_at ON analytics(created_at);
 
 -- Habilitar RLS (Row Level Security) - Opcional pero recomendado
 ALTER TABLE interactions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE achievements ENABLE ROW LEVEL SECURITY;
-ALTER TABLE analytics ENABLE ROW LEVEL SECURITY;
 
 -- Políticas básicas (permite lectura/escritura pública)
 CREATE POLICY "Allow public read" ON interactions FOR SELECT USING (true);
 CREATE POLICY "Allow public insert" ON interactions FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow public read achievements" ON achievements FOR SELECT USING (true);
 CREATE POLICY "Allow public insert achievements" ON achievements FOR INSERT WITH CHECK (true);
-CREATE POLICY "Allow public insert analytics" ON analytics FOR INSERT WITH CHECK (true);
 ```
 
 ### 1.5 Verificar configuración
@@ -108,32 +83,27 @@ npm run dev
 ```
 
 Visita `http://localhost:3000` y verifica:
-- ✅ El chatbot aparece en la esquina inferior derecha
-- ✅ Los likes funcionan en los proyectos
+- ✅ Los comentarios funcionan en los proyectos
 - ✅ Los logros se desbloquean al interactuar
+- ✅ El portafolio se muestra correctamente
 
 ## Solución de Problemas
-
-### Error: "GEMINI_API_KEY no configurada"
-- Verifica que el archivo `.env.local` existe
-- Verifica que la variable `GEMINI_API_KEY` tiene un valor válido
-- Reinicia el servidor de desarrollo (`npm run dev`)
 
 ### Error: "Supabase connection failed"
 - Verifica que `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY` están correctos
 - Verifica que las tablas están creadas en Supabase
 - Revisa la consola del navegador para más detalles
 
-### El chatbot no responde
-- Verifica que `GEMINI_API_KEY` es válida
-- Revisa la consola del servidor para errores
-- Verifica que tienes créditos en Google AI Studio
-
 ## Próximos Pasos
 
 Una vez configurado, puedes:
 1. ✅ Agregar más proyectos al portafolio
-2. ✅ Personalizar el chatbot con más contexto
-3. ✅ Configurar analytics avanzados
-4. ✅ Integrar con el sistema de agentes autónomos
+2. ✅ Personalizar el contenido y diseño
+3. ✅ Agregar experiencia laboral y educación
+
+
+
+
+
+
 

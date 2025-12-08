@@ -1,0 +1,656 @@
+npm run device<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Antonio Lloret Sánchez</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 40px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+
+        .cv-container {
+            background: #ffffff;
+            padding: 60px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-height: 297mm;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 3px solid #1e3a5f;
+        }
+
+        .header h1 {
+            font-size: 26pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #1e3a5f;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .header .title {
+            font-size: 15pt;
+            font-weight: 400;
+            color: #999;
+            margin-bottom: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .header .contact {
+            font-size: 10pt;
+            color: #555;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 30px;
+            margin-top: 15px;
+        }
+
+        .header .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header .contact-item .icon {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            color: #666;
+        }
+
+        .header .contact-item a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .header .contact-item a:hover {
+            color: #1e3a5f;
+            text-decoration: underline;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-size: 13pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        /* Profile */
+        .profile {
+            text-align: justify;
+            font-size: 10.5pt;
+            line-height: 1.8;
+            color: #444;
+            padding: 0 5px;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .experience-header {
+            margin-bottom: 12px;
+        }
+
+        .experience-role {
+            font-size: 12.5pt;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            letter-spacing: 0.3px;
+        }
+
+        .experience-company {
+            font-size: 10.5pt;
+            color: #555;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .experience-company a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .experience-company a:hover {
+            text-decoration: underline;
+        }
+
+        .experience-description {
+            font-size: 10pt;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.7;
+            padding-left: 5px;
+        }
+
+        .experience-responsibilities {
+            margin-top: 10px;
+            padding-left: 0;
+        }
+
+        .experience-responsibilities li {
+            font-size: 10pt;
+            color: #555;
+            margin-bottom: 6px;
+            list-style: none;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .experience-responsibilities li:before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 12pt;
+        }
+
+        /* Projects */
+        .project {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .project:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .project-tech {
+            font-size: 9.5pt;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            padding: 5px 0;
+        }
+
+        .project-title {
+            font-size: 12.5pt;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .project-description {
+            font-size: 10pt;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            padding-left: 5px;
+        }
+
+        .project-features {
+            margin-top: 10px;
+            padding-left: 0;
+        }
+
+        .project-features li {
+            font-size: 10pt;
+            color: #555;
+            margin-bottom: 6px;
+            list-style: none;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .project-features li:before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 12pt;
+        }
+
+        .project-links {
+            margin-top: 12px;
+            font-size: 9.5pt;
+            color: #0066cc;
+            padding-left: 5px;
+        }
+
+        .project-links a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        .project-links span {
+            color: #ccc;
+            margin: 0 8px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            font-size: 10pt;
+            padding: 5px 0;
+        }
+
+        .skill-category {
+            margin-bottom: 15px;
+        }
+
+        .skill-category strong {
+            font-weight: 600;
+            color: #1a1a1a;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 10.5pt;
+            letter-spacing: 0.2px;
+        }
+
+        .skill-category span {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 18px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .education-title {
+            font-size: 11.5pt;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            letter-spacing: 0.2px;
+        }
+
+        .education-title a {
+            color: #1a1a1a;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .education-title a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        .education-title .cert-link-icon {
+            width: 12px;
+            height: 12px;
+            opacity: 0.6;
+        }
+
+        .education-institution {
+            font-size: 10pt;
+            color: #555;
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+
+        .education-date {
+            font-size: 9.5pt;
+            color: #888;
+            font-style: italic;
+        }
+
+        .education-certification {
+            font-size: 9.5pt;
+            color: #666;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .certifications-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        /* Achievements */
+        .achievements-list {
+            padding-left: 0;
+            padding: 5px 0;
+        }
+
+        .achievements-list li {
+            font-size: 10pt;
+            color: #555;
+            margin-bottom: 8px;
+            list-style: none;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .achievements-list li:before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 12pt;
+        }
+
+        .achievements-list li a {
+            color: #555;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .achievements-list li a:hover {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        .achievements-list li a .cert-link-icon {
+            width: 10px;
+            height: 10px;
+            opacity: 0.6;
+            flex-shrink: 0;
+        }
+
+        /* Print */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+            .cv-container {
+                box-shadow: none;
+                padding: 40px 50px;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Spacing adjustments */
+        .section:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>ANTONIO LLORET SÁNCHEZ</h1>
+            <div class="title">Ingeniero de Software</div>
+            <div class="contact">
+                <div class="contact-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>España</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <a href="mailto:antohachi@gmail.com">antohachi@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <a href="https://linkedin.com/in/antonio-lloret-sánchez" target="_blank">linkedin.com/in/antonio-lloret-sánchez</a>
+                </div>
+                <div class="contact-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span>+34 687723287</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <a href="https://github.com/Toni872" target="_blank">github.com/Toni872</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Profile -->
+        <div class="section">
+            <div class="section-title">Perfil Profesional</div>
+            <div class="profile">
+                Ingeniero de Software especializado en Python y desarrollo full stack. Experiencia en arquitecturas backend con FastAPI y Node.js, desarrollo frontend con React y Next.js, y gestión de bases de datos PostgreSQL. Especializado en diseño de sistemas escalables, integración de servicios cloud (Supabase, Stripe, Cloudflare R2) y containerización con Docker. Comprometido con la excelencia técnica, código limpio y mejores prácticas de ingeniería de software.
+            </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="section">
+            <div class="section-title">Experiencia Profesional</div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-role">Programador Python</div>
+                    <div class="experience-company">
+                        Abisysa | Prácticas Profesionales | <a href="www.abisysa.com">www.abisysa.com</a>
+                    </div>
+                </div>
+                <div class="experience-description">
+                    Empresa de ingeniería especializada en vehículos guiados automatizados (AGV) y automatización industrial con más de 30 años de experiencia. Líder en soluciones de transporte automatizado y optimización logística con tecnología láser SLAM.
+                </div>
+                <ul class="experience-responsibilities">
+                    <li>Desarrollo de interfaces con Python para maquinaria industrial</li>
+                    <li>Optimización de integración software-hardware en sistemas críticos</li>
+                    <li>Implementación de scripts de automatización para procesos industriales</li>
+                    <li>Testing funcional y soporte técnico en sistemas de producción</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section">
+            <div class="section-title">Proyectos Destacados</div>
+            
+            <div class="project">
+                <div class="project-tech">Python | FastAPI | TypeScript | React | Next.js | PostgreSQL | Docker</div>
+                <div class="project-title">Sistema ERP Empresarial (2025)</div>
+                <div class="project-description">
+                    Sistema ERP completo con arquitectura modular full-stack. Backend desarrollado con Python 3.11.9 y FastAPI 0.121.2, implementando API REST con arquitectura MVC. Frontend construido con Next.js 15.5.3, React 19.1.0 y TypeScript, utilizando Tailwind CSS para diseño responsive. Base de datos PostgreSQL 15 containerizada con Docker Compose.
+                </div>
+                <ul class="project-features">
+                    <li>Módulos implementados: Recursos Humanos e Inventario con CRUD completo</li>
+                    <li>Arquitectura escalable lista para expansión modular</li>
+                    <li>Documentación interactiva de API en /docs</li>
+                    <li>Métricas: 28 módulos, 15,000+ líneas de código, 50+ endpoints REST</li>
+                </ul>
+                <div class="project-links">
+                    <a href="https://github.com/Toni872/SISTEMAEMPRESARIAL">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-tech">Next.js | React | TypeScript | PostgreSQL | Supabase | Stripe | PostGIS</div>
+                <div class="project-title">Marketplace Vilok (2025)</div>
+                <div class="project-description">
+                    Marketplace completo para alquiler de espacios de trabajo y eventos. Integración full-stack con Supabase para backend PostgreSQL, Stripe para procesamiento seguro de pagos y Cloudflare R2 para gestión de imágenes.
+                </div>
+                <ul class="project-features">
+                    <li>Más de 30 componentes React reutilizables</li>
+                    <li>Sistema de reservas en tiempo real con mensajería anfitrión-huésped</li>
+                    <li>Autenticación OAuth, RLS y búsqueda geográfica con PostGIS</li>
+                    <li>Dashboards basados en roles y sistema de reseñas post-reserva</li>
+                </ul>
+                <div class="project-links">
+                    <a href="https://github.com/Toni872/VilokProject">GitHub</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-title">Sistemas Python y IA (2025)</div>
+                <ul class="project-features">
+                    <li>Sistema de gestión de datos de vuelos multiformato</li>
+                    <li>Cliente APIs REST con autenticación avanzada</li>
+                    <li>Cliente LMStudio con soporte REST/WebSockets</li>
+                    <li>Asistente multimodal con IA</li>
+                    <li>Workflows de automatización empresarial con N8N</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="section">
+            <div class="section-title">Competencias Técnicas</div>
+            <div class="skills-grid">
+                <div>
+                    <div class="skill-category">
+                        <strong>Lenguajes de Programación</strong>
+                        <span>Python, JavaScript, TypeScript</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong>Frontend</strong>
+                        <span>React, Next.js, Tailwind CSS</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong>APIs y Protocolos</strong>
+                        <span>REST, WebSockets, OAuth</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong>IA y Automatización</strong>
+                        <span>Prompt Engineering, LLMs, N8N, Sistemas Predictivos</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="skill-category">
+                        <strong>Backend</strong>
+                        <span>FastAPI, Node.js, Express</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong>Bases de Datos</strong>
+                        <span>PostgreSQL, Redis, PostGIS</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong>DevOps y Cloud</strong>
+                        <span>Docker, Docker Compose, Supabase, Stripe, Cloudflare R2</span>
+                    </div>
+                    <div class="skill-category">
+                        <strong>Otras Competencias</strong>
+                        <span>Arquitecturas Escalables, Testing, Integración Software-Hardware</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <div class="section-title">Formación Académica</div>
+            
+            <div class="education-item">
+                <div class="education-title">
+                    <a href="/pdf/Certificado.pdf" target="_blank">
+                        Programa Profesional Desarrollo Python (PCAP)
+                        <svg class="cert-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+                <div class="education-institution">Escuela Musk & Python Institute</div>
+                <div class="education-date">Noviembre 2023</div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-title">
+                    <a href="/pdf/Certificado.pdf" target="_blank">
+                        Especialización en Flask con Python
+                        <svg class="cert-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+                <div class="education-institution">Escuela Musk</div>
+                <div class="education-date">Marzo 2024</div>
+                <div class="education-certification">Certificación ARP (UE) - High Quality Online Education</div>
+            </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="section">
+            <div class="section-title">Logros y Competencias Clave</div>
+            <ul class="achievements-list">
+                <li>Diseño e implementación de sistemas de autenticación segura en aplicaciones críticas</li>
+                <li>Desarrollo de interfaces responsive con UX optimizada para múltiples dispositivos</li>
+                <li>Automatización de procesos empresariales críticos mediante integración de reglas de negocio con IA</li>
+                <li>Desarrollo de soluciones industriales orientadas al cliente en entornos de producción</li>
+                <li>Arquitectura de sistemas escalables y mantenibles con patrones de diseño modernos</li>
+                <li>Integración exitosa de servicios cloud modernos en aplicaciones full-stack</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            console.log('CV listo para imprimir');
+            console.log('Presiona Ctrl+P (Cmd+P en Mac) para guardar como PDF');
+        };
+    </script>
+</body>
+</html>

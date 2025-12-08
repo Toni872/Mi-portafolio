@@ -1,0 +1,174 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "viewWork": "View my work",
+    "contactMe": "Contact me",
+    "downloadCV": "Download CV",
+    "skill": "Software engineer"
+  },
+  "about": {
+    "title": "About me",
+    "text": "Software Engineer specialized in AI, Python and TypeScript with experience in full stack development. Experience in backend architectures with FastAPI and Node.js, frontend development with React and Next.js, and PostgreSQL database management. Specialized in designing scalable systems, cloud service integration (Supabase, Stripe, Cloudflare R2), and containerization with Docker. Committed to technical excellence, clean code, and software engineering best practices.",
+    "hobby": "When I'm not coding, you'll find me exploring new technologies, contributing to open source projects, or sharing knowledge with the developer community."
+  },
+  "experience": {
+    "title": "Experience",
+    "responsibilities": "Responsibilities",
+    "items": {
+      "vilok": {
+        "company": "Vilok",
+        "period": "Freelance Project - 2 months",
+        "description": "Complete development of the Vilok marketplace for workspace and event rentals. Freelance project for a startup that required a scalable platform with real-time booking system, payment integration, user management and optimized user experience. Modern architecture built with Next.js 14, TypeScript, Supabase and Stripe.",
+        "responsibilities": [
+          "Complete frontend development with Next.js 14, React and TypeScript",
+          "Implementation of over 30 reusable React components",
+          "Integration with Supabase for PostgreSQL backend and OAuth authentication",
+          "Real-time booking system with availability management",
+          "Secure payment integration with Stripe",
+          "Implementation of RLS (Row Level Security) for data security",
+          "Messaging system between hosts and guests",
+          "Advanced geographic search with PostGIS",
+          "Role-based dashboards (host/guest) with real-time metrics",
+          "Integration with Cloudflare R2 for image storage",
+          "Review and rating system post-booking",
+          "Performance and user experience optimization"
+        ]
+      },
+      "erp-system": {
+        "company": "Enterprise ERP System",
+        "period": "Personal Project - 2025",
+        "description": "Complete development of an enterprise ERP system with modular full-stack architecture. Backend developed with Python 3.11.9 and FastAPI 0.121.2, implementing REST API with MVC architecture. Frontend built with Next.js 15.5.3, React 19.1.0 and TypeScript 5.9.2, using Tailwind CSS 4.1.13 for responsive design. PostgreSQL 15 database containerized with Docker Compose. Scalable system designed for business management with multiple integrated modules.",
+        "responsibilities": [
+          "Design and development of scalable modular full-stack architecture",
+          "Backend with Python, FastAPI and REST API MVC architecture",
+          "Frontend with Next.js 15, React 19 and TypeScript",
+          "Implementation of modules: Human Resources and Inventory with complete CRUD",
+          "PostgreSQL 15 database configuration and management with Docker Compose",
+          "Interactive API documentation at /docs with Swagger/OpenAPI",
+          "28 implemented modules with over 15,000 lines of code",
+          "50+ REST endpoints for business management",
+          "Architecture prepared for modular expansion and scalability",
+          "Performance optimization and development best practices",
+          "Testing and validation of critical functionalities"
+        ]
+      },
+      "abisysa": {
+        "company": "Abisysa",
+        "period": "Professional Internship - 3 months",
+        "description": "Professional internship at an engineering company specialized in automated guided vehicles (AGV) and industrial automation with over 30 years of experience. Leader in automated transportation solutions and logistics optimization with SLAM laser technology. Development of Python interfaces for industrial machinery, software-hardware optimization, automation scripts, functional testing and technical support in critical production systems.",
+        "responsibilities": [
+          "Python interface development for industrial machinery",
+          "Software-hardware integration optimization in critical systems",
+          "Implementation of automation scripts for industrial processes",
+          "Functional testing and validation of production systems",
+          "Technical support in company critical systems"
+        ]
+      }
+    }
+  },
+  "education": {
+    "title": "Education",
+    "items": {
+      "python-pcap": {
+        "title": "Professional Python Development Program",
+        "subtitle": "Escuela Musk & Python Institute",
+        "description": "Professional certification in Python development focusing on best practices and scalable architectures.",
+        "date": "Nov 2023"
+      },
+      "flask": {
+        "title": "Flask with Python Specialization",
+        "subtitle": "Escuela Musk & Python Institute",
+        "description": "ARP (EU) Certification - High Quality Online Education. Specialization in web development with Flask and Python.",
+        "date": "Mar 2024"
+      }
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "liveApp": "Live app",
+    "learnMore": "Learn more",
+    "code": "Code",
+    "hideComments": "Hide comments",
+    "viewComments": "View comments",
+    "viewDetails": "View details",
+    "description": "Description",
+    "technologies": "Technologies",
+    "stats": "Statistics",
+    "info": "Information",
+    "repository": "Repository",
+    "notFound": "Project not found",
+    "details": {
+      "sistema-erp": {
+        "title": "Enterprise ERP System",
+        "subtitle": "Full-stack business management system with AI integration",
+        "description": "Complete ERP system developed with modular full-stack architecture. Backend built with Python 3.11.9 and FastAPI 0.121.2, implementing REST API with MVC architecture (Models, Views, State). Frontend developed with Next.js 15.5.3, React 19.1.0 and TypeScript 5.9.2, using Tailwind CSS 4.1.13 for styling. PostgreSQL 15 database configured with Docker Compose. Implemented modules: Human Resources (/hr) for employee management and Inventory (/inventory) for product management. Modular architecture ready to scale, with in-memory storage prepared for database migration. Available API endpoints: GET/POST/DELETE for HR and Inventory. Interactive documentation available at /docs. Backend server (FastAPI) on port 8000 and frontend (Next.js) on port 3000, both operational and ready for development and testing."
+      },
+      "vilok-project": {
+        "title": "Marketplace Vilok",
+        "subtitle": "Marketplace for workspace and event rentals",
+        "description": "Complete marketplace for workspace and event rentals built with Next.js 14 and TypeScript. Supabase integration for PostgreSQL backend, Stripe for payments, and Cloudflare R2 for images. 30+ React components, real-time booking system, secure payments, host-guest messaging, post-booking reviews. Scalable architecture with OAuth authentication, RLS, geographic search with PostGIS, and role-based dashboards."
+        },
+        "tasadiv": {
+          "title": "TasaDiv Currency Platform",
+          "subtitle": "Real-time LATAM currency converter PWA with vanilla JavaScript",
+          "description": "Lightweight fintech progressive web app for real-time LATAM currency conversion built with pure HTML5, CSS3 and vanilla JavaScript (ES6+). Supports 18 Latin American currencies with bidirectional conversion, instant updates on currency click and locale-aware formatting via Intl.NumberFormat. Minimalist fintech UI with dark theme and red accents, fully responsive, mobile-first and designed to fit on a single screen without vertical scrolling. Implemented as a fully serverless PWA using ExchangeRate-API, cache-first Service Worker, offline support and Vercel edge hosting. Performance optimizations include GPU-accelerated CSS, debounced inputs, lazy loading and critical CSS inline, achieving around 95/100 Lighthouse scores and sub-2.5s LCP on 3G connections."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have a question or want to work together? Leave me your details and I'll get back to you as soon as possible.",
+    "connect": "Connect with me",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "sendMessage": "Send message",
+    "sending": "Sending...",
+    "sent": "Sent!"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "scrollToAbout": "Scroll to about section",
+    "selectLanguage": "Select language",
+    "toggleMenu": "Toggle menu",
+    "backHome": "Back to home",
+    "backToProjects": "Back to projects"
+  },
+  "comments": {
+    "title": "Comments",
+    "placeholder": "Write a comment...",
+    "characters": "characters",
+    "noComments": "No comments yet. Be the first to comment!",
+    "visitor": "Visitor",
+    "now": "Just now",
+    "minutesAgo": "{minutes} minute{plural} ago",
+    "hoursAgo": "{hours} hour{plural} ago",
+    "daysAgo": "{days} day{plural} ago"
+  },
+  "achievements": {
+    "unlocked": "Achievement Unlocked!",
+    "firstVisit": {
+      "name": "First Visit",
+      "description": "You visited the portfolio for the first time"
+    },
+    "explorer": {
+      "name": "Explorer",
+      "description": "You viewed all projects"
+    },
+    "fan": {
+      "name": "Fan",
+      "description": "You gave your first like"
+    }
+  }
+}
+

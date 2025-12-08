@@ -94,6 +94,17 @@ export async function addLike(visitorId: string, projectId: string) {
   if (error) throw error
 }
 
+export async function removeLike(visitorId: string, projectId: string) {
+  const { error } = await supabase
+    .from('interactions')
+    .delete()
+    .eq('visitor_id', visitorId)
+    .eq('project_id', projectId)
+    .eq('interaction_type', 'like')
+  
+  if (error) throw error
+}
+
 export async function getComments(projectId: string) {
   const { data, error } = await supabase
     .from('interactions')
