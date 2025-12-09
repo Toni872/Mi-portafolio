@@ -1,14 +1,14 @@
 'use client'
 
+import { useEffect, KeyboardEvent } from 'react'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { Project } from '@/types'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
-import { Github, ArrowRight } from 'lucide-react'
+import { Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import Image from 'next/image'
 import { trackProjectView } from '@/lib/analytics'
-import { useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
-import Link from 'next/link'
 
 interface ProjectsProps {
   projects: Project[]
@@ -16,6 +16,7 @@ interface ProjectsProps {
 
 export function Projects({ projects }: ProjectsProps) {
   const { t } = useLanguage()
+  const router = useRouter()
 
   useEffect(() => {
     projects.forEach(project => {
@@ -43,109 +44,118 @@ export function Projects({ projects }: ProjectsProps) {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => {
               const projectTranslations = t.projects.details[project.id as keyof typeof t.projects.details]
+              const hasVideo = project.id === 'sistema-erp' || project.id === 'vilok-project' || project.id === 'tasadiv'
+
+              const handleNavigate = () => {
+                if (project.id) {
+                  router.push(`/projects/${project.id}`)
+                }
+              }
+
+              const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+                if ((e.key === 'Enter' || e.key === ' ') && project.id) {
+                  e.preventDefault()
+                  router.push(`/projects/${project.id}`)
+                }
+              }
+
               return (
                 <Card
                   key={project.id || index}
-                  className="group hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 flex flex-col"
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleNavigate}
+                  onKeyDown={handleKeyDown}
+                  className="group relative h-full cursor-pointer overflow-hidden border border-border bg-surface/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
                 >
-                  {project.image && (
-                    <div className="relative rounded-t-lg overflow-hidden aspect-video">
-                      {/* Usar GIF como miniatura si el proyecto tiene video */}
-                      {(project.id === 'sistema-erp' || project.id === 'vilok-project' || project.id === 'tasadiv') ? (
-                        <>
-                          <img
-                            src={
-                              project.id === 'sistema-erp'
-                                ? '/videos/thumbnails/erp-demo-thumbnail.gif'
-                                : project.id === 'vilok-project'
-                                  ? '/videos/thumbnails/vilok-demo-thumbnail.gif'
-                                  : '/videos/thumbnails/tasadiv-demo-thumbnail.gif'
-                            }
-                            alt={projectTranslations?.title || project.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            loading="lazy"
-                          />
-                          {/* Overlay con icono de play */}
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
-                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/30">
-                                <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M8 5v14l11-7z"/>
-                                </svg>
+                  {/* Borde animado rojo */}
+                  <div className="pointer-events-none absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-red-500 via-red-400 to-red-600 opacity-0 group-hover:opacity-60 group-active:opacity-80 blur-sm transition duration-300 animate-[spin_8s_linear_infinite]"></div>
+                  <div className="pointer-events-none absolute inset-0 rounded-xl border border-red-500/50 opacity-0 group-hover:opacity-80 group-active:opacity-100 transition duration-200"></div>
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    {project.image && (
+                      <div className="relative rounded-t-lg overflow-hidden aspect-video">
+                        {/* Usar GIF como miniatura si el proyecto tiene video */}
+                        {hasVideo ? (
+                          <>
+                            <img
+                              src={
+                                project.id === 'sistema-erp'
+                                  ? '/videos/thumbnails/erp-demo-thumbnail.gif'
+                                  : project.id === 'vilok-project'
+                                    ? '/videos/thumbnails/vilok-demo-thumbnail.gif'
+                                    : '/videos/thumbnails/tasadiv-demo-thumbnail.gif'
+                              }
+                              alt={projectTranslations?.title || project.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              loading="lazy"
+                            />
+                            {/* Overlay con icono de play */}
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
+                              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/30">
+                                  <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                  </svg>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </>
-                      ) : (
-                        <Image
-                          src={project.image}
-                          alt={projectTranslations?.title || project.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      )}
-                    </div>
-                  )}
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <CardTitle className="text-xl mb-1">{projectTranslations?.title || project.title}</CardTitle>
-                        <CardDescription className="text-sm">
-                          {projectTranslations?.subtitle || project.subtitle}
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <p className="text-gray-300 leading-relaxed line-clamp-3 mb-4 text-sm">
-                      {projectTranslations?.description || project.description}
-                    </p>
-
-                    {project.technologies && project.technologies.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="px-2 py-1 bg-surface rounded text-xs text-gray-300 border border-border"
-                          >
-                            {tech.name}
-                          </span>
-                        ))}
+                          </>
+                        ) : (
+                          <Image
+                            src={project.image}
+                            alt={projectTranslations?.title || project.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        )}
                       </div>
                     )}
+                    <CardHeader>
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <CardTitle className="text-xl mb-1">{projectTranslations?.title || project.title}</CardTitle>
+                          <CardDescription className="text-sm">
+                            {projectTranslations?.subtitle || project.subtitle}
+                          </CardDescription>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="flex-1 flex flex-col">
+                      <p className="text-gray-300 leading-relaxed line-clamp-3 mb-4 text-sm">
+                        {projectTranslations?.description || project.description}
+                      </p>
 
-                    <div className="mt-auto pt-4 flex flex-wrap gap-2">
-                      {project.id && (
-                        <Button asChild variant="default" size="sm" className="flex-1 group hover:!text-red-500">
-                          <Link 
-                            href={`/projects/${project.id}`} 
-                            className="group-hover:!text-red-500 transition-colors text-[#0a0f0a]"
-                            style={{ color: '#0a0f0a' }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.color = '#ef4444'
-                              const arrow = e.currentTarget.querySelector('svg')
-                              if (arrow) arrow.style.color = '#ef4444'
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.color = '#0a0f0a'
-                              const arrow = e.currentTarget.querySelector('svg')
-                              if (arrow) arrow.style.color = '#0a0f0a'
-                            }}
+                      {project.technologies && project.technologies.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                            <span
+                              key={techIndex}
+                              className="px-2 py-1 bg-surface rounded text-xs text-gray-300 border border-border"
+                            >
+                              {tech.name}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      <div className="mt-auto pt-4 flex flex-wrap gap-2">
+                        {project.github && (
+                          <Button
+                            asChild
+                            variant="outline"
+                            size="sm"
+                            onClick={(e) => e.stopPropagation()}
+                            className="hover:border-red-500 hover:text-red-400"
                           >
-                            <span className="text-[#0a0f0a] group-hover:text-red-500">{t.projects.viewDetails}</span>
-                            <ArrowRight className="h-4 w-4 ml-2 text-[#0a0f0a] group-hover:text-red-500" />
-                          </Link>
-                        </Button>
-                      )}
-                      {project.github && (
-                        <Button asChild variant="outline" size="sm">
-                          <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4" />
-                          </a>
-                        </Button>
-                      )}
-                    </div>
-                  </CardContent>
+                            <a href={project.github} target="_blank" rel="noopener noreferrer">
+                              <Github className="h-4 w-4" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </CardContent>
+                  </div>
                 </Card>
               )
             })}
