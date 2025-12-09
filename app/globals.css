@@ -51,14 +51,62 @@
   box-sizing: border-box;
 }
 
+/* Prevenir overflow horizontal en móviles */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Optimizaciones para móviles */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px; /* Prevenir zoom automático en iOS */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Asegurar que los elementos táctiles sean al menos 44x44px */
+  button, a, [role="button"], [tabindex] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimizar padding de secciones en móviles */
+  .section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Optimizar container en móviles */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Optimizar imágenes y videos */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Mejorar rendimiento en móviles */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
-/* Cursor personalizado - NO ocultar por defecto, solo cuando el componente esté activo */
-/* El componente CustomCursor manejará la ocultación del cursor del sistema */
-/* Esto asegura que siempre haya un cursor visible como fallback */
 
 body {
   font-family: 'Consolas', 'Lucida Console', 'Courier New', 'Monaco', monospace;

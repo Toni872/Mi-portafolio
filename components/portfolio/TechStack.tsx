@@ -55,7 +55,7 @@ export function TechStack({ technologies }: TechStackProps) {
       <div className="container relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="relative mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
               {t.nav.skills}
             </h2>
             <div className="absolute bottom-0 left-0 w-24 h-1 bg-gradient-to-r from-primary to-transparent"></div>

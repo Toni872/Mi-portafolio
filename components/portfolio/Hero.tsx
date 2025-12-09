@@ -110,7 +110,7 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
                   href={`mailto:${email}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-3 rounded-full bg-surface/50 border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110"
+                  className="group p-3 rounded-full bg-surface/50 border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                   aria-label="Email"
                 >
                   <svg className="w-6 h-6 text-gray-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -123,7 +123,7 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-3 rounded-full bg-surface/50 border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110"
+                  className="group p-3 rounded-full bg-surface/50 border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                   aria-label="GitHub"
                 >
                   <svg className="w-6 h-6 text-gray-400 group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -136,7 +136,7 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
                   href={linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-3 rounded-full bg-surface/50 border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110"
+                  className="group p-3 rounded-full bg-surface/50 border border-border/50 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:scale-110 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                   aria-label="LinkedIn"
                 >
                   <svg className="w-6 h-6 text-gray-400 group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +147,7 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
               {phone && (
                 <a
                   href={`tel:${phone}`}
-                  className="group p-3 rounded-full bg-surface/50 border border-border/50 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-300 hover:scale-110"
+                  className="group p-3 rounded-full bg-surface/50 border border-border/50 hover:border-green-500/50 hover:bg-green-500/10 transition-all duration-300 hover:scale-110 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                   aria-label="Phone"
                 >
                   <svg className="w-6 h-6 text-gray-400 group-hover:text-green-500 transition-colors" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -160,23 +160,23 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
           
           {/* Name */}
           <div className="relative">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-accent" style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-accent" style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
               {name}
             </h1>
           </div>
           
           {/* Typing Effect */}
-          <div className="h-16 flex items-center justify-center">
+          <div className="h-12 sm:h-14 md:h-16 flex items-center justify-center">
             <div className="relative">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-text-secondary">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-text-secondary">
                 {displayedText}
-                <span className="inline-block w-1 h-10 bg-primary ml-2 animate-pulse"></span>
+                <span className="inline-block w-0.5 sm:w-1 h-6 sm:h-8 md:h-10 bg-primary ml-1 sm:ml-2 animate-pulse"></span>
               </h2>
             </div>
           </div>
           
           {/* Short Description with Better Typography */}
-          <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-text-secondary max-w-3xl mx-auto leading-relaxed font-light px-4">
             {(() => {
               const firstSentence = t.about.text.split('.')[0] + '.'
               // Buscar "IA, Python y TypeScript" o "AI, Python and TypeScript" y resaltarlos en rojo

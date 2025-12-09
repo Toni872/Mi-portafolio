@@ -39,7 +39,7 @@ export default function ProjectPage() {
         <main className="min-h-screen pt-20">
           <div className="container">
             <div className="max-w-4xl mx-auto text-center py-20">
-              <h1 className="text-4xl font-bold mb-4">{t.projects.notFound}</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 px-4">{t.projects.notFound}</h1>
               <Button onClick={() => router.push('/')} variant="outline">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 {t.common.backHome}
@@ -74,10 +74,10 @@ export default function ProjectPage() {
             <div className="mb-12">
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent px-4 sm:px-0">
                     {projectTranslations?.title || project.title}
                   </h1>
-                  <p className="text-xl text-gray-400 mb-6">
+                  <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-6 px-4 sm:px-0">
                     {projectTranslations?.subtitle || project.subtitle}
                   </p>
                 </div>
@@ -85,7 +85,7 @@ export default function ProjectPage() {
 
               {/* Project Image or Video */}
               {project.image && (
-                <div className={`relative w-full rounded-lg overflow-hidden mb-8 border-2 border-border ${(isERPProject || isVilokProject || isTasaDivProject) ? 'aspect-video max-h-[600px]' : 'h-96'}`}>
+                <div className={`relative w-full rounded-lg overflow-hidden mb-8 border-2 border-border ${(isERPProject || isVilokProject || isTasaDivProject) ? 'aspect-video max-h-[300px] sm:max-h-[400px] md:max-h-[600px]' : 'h-64 sm:h-80 md:h-96'}`}>
                   {(isERPProject || isVilokProject || isTasaDivProject) && !isVideoPlaying ? (
                     <div className="relative w-full h-full group cursor-pointer" onClick={() => setIsVideoPlaying(true)}>
                       {/* GIF como miniatura del video */}
@@ -121,8 +121,8 @@ export default function ProjectPage() {
                       />
                       {/* Overlay con botón de play */}
                       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                        <div className="bg-white/90 rounded-full p-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                          <Play className="h-12 w-12 text-gray-900 ml-1" fill="currentColor" />
+                        <div className="bg-white/90 rounded-full p-4 sm:p-6 group-hover:scale-110 transition-transform duration-300 shadow-lg touch-manipulation">
+                          <Play className="h-8 w-8 sm:h-12 sm:w-12 text-gray-900 ml-1" fill="currentColor" />
                         </div>
                       </div>
                     </div>

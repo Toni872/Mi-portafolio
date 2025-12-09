@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, Github, Linkedin, Send, MessageCircle } from 'lucide-react'
+import { Mail, Github, Linkedin, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -47,16 +47,16 @@ export function Contact({ email, github, linkedin }: ContactProps) {
             <div className="container relative z-10">
                 <div className="max-w-5xl mx-auto">
                     <div className="relative mb-12">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
                             {t.contact.title}
                         </h2>
                         <div className="absolute bottom-0 left-0 w-24 h-1 bg-gradient-to-r from-primary to-transparent"></div>
-                        <p className="text-xl text-text-secondary mt-4">
+                        <p className="text-base sm:text-lg md:text-xl text-text-secondary mt-4 px-4 sm:px-0">
                             {t.contact.subtitle}
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-12 items-start">
+                    <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
                         {/* Contact Info */}
                         <div className="space-y-6 flex flex-col justify-start">
                             <h3 className="text-2xl font-semibold mb-6 text-primary-light">{t.contact.connect}</h3>
@@ -64,7 +64,7 @@ export function Contact({ email, github, linkedin }: ContactProps) {
                             <div className="space-y-4">
                                 <a
                                     href={`mailto:${email}`}
-                                    className="group relative flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]"
+                                    className="group relative flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] touch-manipulation min-h-[44px] active:bg-surface/70"
                                 >
                                     <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
                                         <Mail size={24} className="text-primary" />
@@ -76,7 +76,7 @@ export function Contact({ email, github, linkedin }: ContactProps) {
                                     href={github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group relative flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]"
+                                    className="group relative flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] touch-manipulation min-h-[44px] active:bg-surface/70"
                                 >
                                     <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
                                         <Github size={24} className="text-primary" />
@@ -88,7 +88,7 @@ export function Contact({ email, github, linkedin }: ContactProps) {
                                     href={linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group relative flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]"
+                                    className="group relative flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] touch-manipulation min-h-[44px] active:bg-surface/70"
                                 >
                                     <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
                                         <Linkedin size={24} className="text-primary" />
@@ -100,7 +100,7 @@ export function Contact({ email, github, linkedin }: ContactProps) {
                                     href="https://wa.me/34687723287"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group relative flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-green-500/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]"
+                                    className="group relative flex items-center gap-4 p-4 rounded-xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-green-500/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] touch-manipulation min-h-[44px] active:bg-surface/70"
                                 >
                                     <div className="p-3 bg-green-500/10 rounded-lg group-hover:bg-green-500/20 transition-all duration-300 group-hover:scale-110">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-green-500">
@@ -124,7 +124,7 @@ export function Contact({ email, github, linkedin }: ContactProps) {
                                     onChange={handleChange}
                                     required
                                     autoComplete="name"
-                                    className="w-full px-4 py-3 bg-surface/50 backdrop-blur-sm border border-border/50 rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-text placeholder:text-text-muted hover:border-primary/30"
+                                    className="w-full px-4 py-3 bg-surface/50 backdrop-blur-sm border border-border/50 rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-text placeholder:text-text-muted hover:border-primary/30 text-base"
                                 />
 
                                 <input
@@ -135,7 +135,7 @@ export function Contact({ email, github, linkedin }: ContactProps) {
                                     onChange={handleChange}
                                     required
                                     autoComplete="email"
-                                    className="w-full px-4 py-3 bg-surface/50 backdrop-blur-sm border border-border/50 rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-text placeholder:text-text-muted hover:border-primary/30"
+                                    className="w-full px-4 py-3 bg-surface/50 backdrop-blur-sm border border-border/50 rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 text-text placeholder:text-text-muted hover:border-primary/30 text-base"
                                 />
 
                                 <textarea
@@ -152,7 +152,7 @@ export function Contact({ email, github, linkedin }: ContactProps) {
                             <button
                                 type="submit"
                                 disabled={status === 'sending'}
-                                className="w-full relative px-6 py-3 bg-primary text-dark hover:bg-primary/90 rounded-lg font-medium transition-all duration-300 disabled:pointer-events-none disabled:opacity-50"
+                                className="w-full relative px-6 py-3 bg-primary text-dark hover:bg-primary/90 rounded-lg font-medium transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 touch-manipulation min-h-[44px] active:bg-primary/80"
                                 style={{
                                     WebkitTapHighlightColor: 'transparent'
                                 }}

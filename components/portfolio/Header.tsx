@@ -149,7 +149,7 @@ export function Header() {
             <LanguageSelector />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="relative p-2 rounded-lg text-gray-300 hover:text-primary-light hover:bg-primary/10 transition-all duration-300"
+              className="relative p-3 rounded-lg text-gray-300 hover:text-primary-light hover:bg-primary/10 transition-all duration-300 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label={t.common.toggleMenu}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -168,10 +168,10 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={(e) => handleNavClick(link.href, link.isHash, e)}
-                    className={`relative px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    className={`relative px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 touch-manipulation min-h-[44px] flex items-center ${
                       isActive
                         ? 'text-primary bg-primary/10 border border-primary/30'
-                        : 'text-gray-400 hover:text-text hover:bg-surface/50'
+                        : 'text-gray-400 hover:text-text hover:bg-surface/50 active:bg-surface/70'
                     }`}
                   >
                     {link.label}

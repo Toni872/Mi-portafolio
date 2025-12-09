@@ -34,7 +34,7 @@ export function Projects({ projects }: ProjectsProps) {
       <div className="container relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="relative mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
               {t.projects.title}
             </h2>
             <div className="absolute bottom-0 left-0 w-24 h-1 bg-gradient-to-r from-primary to-transparent"></div>
@@ -66,7 +66,7 @@ export function Projects({ projects }: ProjectsProps) {
                   tabIndex={0}
                   onClick={handleNavigate}
                   onKeyDown={handleKeyDown}
-                  className="group relative h-full cursor-pointer overflow-hidden border border-border bg-surface/60 backdrop-blur-sm transition-all duration-300 hover:border-red-500/80 active:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+                  className="group relative h-full cursor-pointer overflow-hidden border border-border bg-surface/60 backdrop-blur-sm transition-all duration-300 hover:border-red-500/80 active:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 touch-manipulation"
                 >
                   <div className="relative z-10 flex flex-col h-full">
                     {project.image && (
