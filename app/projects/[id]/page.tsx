@@ -99,10 +99,10 @@ export default function ProjectPage() {
                       <video
                         src={
                           isERPProject
-                            ? "/videos/erp-demo.mp4"
+                            ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/erp-demo"
                             : isVilokProject
-                              ? "/videos/vilok-demo.mp4"
-                              : "/videos/TasaDiv%20-%20Tasas%20de%20Cambio%20para%20Latinoam%C3%A9rica%20-%20Google%20Chrome%202025-11-11%2017-23-33.mp4"
+                              ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/vilok-demo"
+                              : "https://res.cloudinary.com/dwsy6b12m/video/upload/v1765276429/portafolio/portafolio/tasadiv-demo"
                         }
                         className="absolute inset-0 w-full h-full object-contain opacity-0"
                         preload="metadata"
@@ -128,10 +128,10 @@ export default function ProjectPage() {
                     <video
                       src={
                         isERPProject
-                          ? "/videos/erp-demo.mp4"
+                          ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/erp-demo"
                           : isVilokProject
-                            ? "/videos/vilok-demo.mp4"
-                            : "/videos/TasaDiv%20-%20Tasas%20de%20Cambio%20para%20Latinoam%C3%A9rica%20-%20Google%20Chrome%202025-11-11%2017-23-33.mp4"
+                            ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/vilok-demo"
+                            : "https://res.cloudinary.com/dwsy6b12m/video/upload/v1765276429/portafolio/portafolio/tasadiv-demo"
                       }
                       className="w-full h-full object-contain"
                       controls

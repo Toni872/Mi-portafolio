@@ -1,7 +1,9 @@
 # 🚀 Pasos para Deploy con Videos
 
 ## ❌ Problema Actual
+
 Vercel tiene un límite de **100 MB por archivo**. Tus videos son:
+
 - `erp-demo.mp4`: ~172 MB ❌
 - `vilok-demo.mp4`: ~358 MB ❌  
 - `TasaDiv...`: ~68 MB ✅ (este sí pasa)
@@ -26,7 +28,7 @@ Una vez que el portafolio esté desplegado, sube los videos:
 
 #### 2.1 Obtén un Token de Vercel
 
-1. Ve a: https://vercel.com/dashboard
+1. Ve a: <https://vercel.com/dashboard>
 2. Click en tu **perfil** (arriba derecha)
 3. Ve a **"Settings"**
 4. Ve a **"Tokens"** (en el menú lateral)
@@ -46,6 +48,7 @@ node scripts/upload-videos-simple.js
 ```
 
 El script:
+
 - ✅ Subirá los 3 videos automáticamente
 - ✅ Te dará las URLs públicas de cada video
 - ✅ Te dirá qué archivos actualizar
@@ -57,11 +60,13 @@ Después de obtener las URLs, actualiza estos archivos:
 **1. `components/portfolio/Projects.tsx`** (líneas 54-85 aproximadamente)
 
 Cambia:
+
 ```tsx
 src="/videos/erp-demo.mp4"
 ```
 
 Por:
+
 ```tsx
 src="https://[URL_DE_BLOB_STORAGE]/erp-demo.mp4"
 ```
@@ -110,4 +115,3 @@ git push
 ---
 
 ¿Necesitas ayuda con algún paso? Avísame y te guío.
-

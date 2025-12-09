@@ -154,3 +154,5 @@ Herramientas recomendadas:
 4. **Hashtags**: Usa 3-5 hashtags relevantes, no más
 5. **Actualizar perfil**: Añade el enlace del portafolio en tu perfil de LinkedIn
 
+
+
