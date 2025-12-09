@@ -50,23 +50,39 @@ export function Projects({ projects }: ProjectsProps) {
                 >
                   {project.image && (
                     <div className="relative rounded-t-lg overflow-hidden aspect-video">
-                      <Image
-                        src={project.image}
-                        alt={projectTranslations?.title || project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      {/* Indicador de video para proyectos que tienen video */}
-                      {(project.id === 'sistema-erp' || project.id === 'vilok-project' || project.id === 'tasadiv') && (
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
-                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/30">
-                              <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                              </svg>
+                      {/* Usar GIF como miniatura si el proyecto tiene video */}
+                      {(project.id === 'sistema-erp' || project.id === 'vilok-project' || project.id === 'tasadiv') ? (
+                        <>
+                          <img
+                            src={
+                              project.id === 'sistema-erp'
+                                ? '/videos/thumbnails/erp-demo-thumbnail.gif'
+                                : project.id === 'vilok-project'
+                                  ? '/videos/thumbnails/vilok-demo-thumbnail.gif'
+                                  : '/videos/thumbnails/tasadiv-demo-thumbnail.gif'
+                            }
+                            alt={projectTranslations?.title || project.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                          />
+                          {/* Overlay con icono de play */}
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center pointer-events-none">
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/30">
+                                <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M8 5v14l11-7z"/>
+                                </svg>
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </>
+                      ) : (
+                        <Image
+                          src={project.image}
+                          alt={projectTranslations?.title || project.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       )}
                     </div>
                   )}

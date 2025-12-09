@@ -88,14 +88,20 @@ export default function ProjectPage() {
                 <div className={`relative w-full rounded-lg overflow-hidden mb-8 border-2 border-border ${(isERPProject || isVilokProject || isTasaDivProject) ? 'aspect-video max-h-[600px]' : 'h-96'}`}>
                   {(isERPProject || isVilokProject || isTasaDivProject) && !isVideoPlaying ? (
                     <div className="relative w-full h-full group cursor-pointer" onClick={() => setIsVideoPlaying(true)}>
-                      {/* Imagen de fondo mientras se carga el video */}
-                      <Image
-                        src={project.image}
+                      {/* GIF como miniatura del video */}
+                      <img
+                        src={
+                          isERPProject
+                            ? "/videos/thumbnails/erp-demo-thumbnail.gif"
+                            : isVilokProject
+                              ? "/videos/thumbnails/vilok-demo-thumbnail.gif"
+                              : "/videos/thumbnails/tasadiv-demo-thumbnail.gif"
+                        }
                         alt={project.title}
-                        fill
-                        className="object-contain"
+                        className="w-full h-full object-contain"
+                        loading="eager"
                       />
-                      {/* Video con miniatura - se carga solo si está disponible */}
+                      {/* Video oculto para preload */}
                       <video
                         src={
                           isERPProject
@@ -104,20 +110,16 @@ export default function ProjectPage() {
                               ? "/videos/vilok-demo.mp4"
                               : "/videos/tasadiv-demo.mp4"
                         }
-                        className="absolute inset-0 w-full h-full object-contain opacity-0"
+                        className="absolute inset-0 w-full h-full object-contain opacity-0 pointer-events-none"
                         preload="metadata"
                         muted
                         playsInline
-                        onLoadedData={(e) => {
-                          // Si el video se carga correctamente, mostrar overlay de play
-                          e.currentTarget.style.opacity = '0'
-                        }}
                         onError={(e) => {
                           // Si el video no está disponible, ocultarlo completamente
                           e.currentTarget.style.display = 'none'
                         }}
                       />
-                      {/* Overlay con botón de play - solo si hay video disponible */}
+                      {/* Overlay con botón de play */}
                       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
                         <div className="bg-white/90 rounded-full p-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                           <Play className="h-12 w-12 text-gray-900 ml-1" fill="currentColor" />
