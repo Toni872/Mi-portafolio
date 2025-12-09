@@ -69,12 +69,12 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       
       <div className="container relative z-10">
-        <div className="max-w-5xl mx-auto text-center space-y-10 slide-up">
+        <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8 md:space-y-10 slide-up px-4 sm:px-0">
           {/* Avatar Image */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-4 sm:mb-6 md:mb-8">
             <div 
               onClick={handleAvatarClick}
-              className={`relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden border-4 shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-surface transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(34,197,94,0.5)] cursor-pointer ${
+              className={`relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden border-4 shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-surface transition-all duration-300 hover:scale-110 hover:shadow-[0_0_40px_rgba(34,197,94,0.5)] cursor-pointer touch-manipulation ${
                 isClicked 
                   ? 'border-red-500 shadow-[0_0_40px_rgba(239,68,68,0.5)]' 
                   : 'border-primary/30'
@@ -104,7 +104,7 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
 
           {/* Social Icons with Official Logos */}
           {(email || github || linkedin || phone) && (
-            <div className="flex justify-center items-center gap-4 mb-6">
+            <div className="flex justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
               {email && (
                 <a
                   href={`mailto:${email}`}
@@ -166,17 +166,17 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
           </div>
           
           {/* Typing Effect */}
-          <div className="h-12 sm:h-14 md:h-16 flex items-center justify-center">
+          <div className="h-10 sm:h-12 md:h-14 lg:h-16 flex items-center justify-center px-4">
             <div className="relative">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-text-secondary">
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-text-secondary">
                 {displayedText}
-                <span className="inline-block w-0.5 sm:w-1 h-6 sm:h-8 md:h-10 bg-primary ml-1 sm:ml-2 animate-pulse"></span>
+                <span className="inline-block w-0.5 sm:w-1 h-5 sm:h-6 md:h-8 lg:h-10 bg-primary ml-1 sm:ml-2 animate-pulse"></span>
               </h2>
             </div>
           </div>
           
           {/* Short Description with Better Typography */}
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-text-secondary max-w-3xl mx-auto leading-relaxed font-light px-4">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-text-secondary max-w-3xl mx-auto leading-relaxed font-light px-4 sm:px-6 md:px-0">
             {(() => {
               const firstSentence = t.about.text.split('.')[0] + '.'
               // Buscar "IA, Python y TypeScript" o "AI, Python and TypeScript" y resaltarlos en rojo
@@ -219,16 +219,16 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
           </p>
           
           {/* Enhanced CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-12">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center pt-6 sm:pt-8 md:pt-12 px-4">
             <a 
               href="#projects" 
-              className="group relative px-8 py-4 text-lg font-semibold rounded-full border-2 border-red-500 text-red-500 hover:bg-red-500/10 hover:shadow-[0_0_20px_rgba(239,68,68,0.5)] hover:border-red-400 hover:text-red-400 transition-all duration-300 transform hover:scale-105"
+              className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full border-2 border-red-500 text-red-500 hover:bg-red-500/10 hover:shadow-[0_0_20px_rgba(239,68,68,0.5)] hover:border-red-400 hover:text-red-400 transition-all duration-300 transform hover:scale-105 touch-manipulation min-h-[44px] flex items-center justify-center text-center"
             >
               <span className="relative z-10">{t.hero.viewWork}</span>
             </a>
             <a 
               href="#contact" 
-              className="group relative px-8 py-4 text-lg font-semibold rounded-full border-2 border-primary text-primary hover:bg-primary/10 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-all duration-300 transform hover:scale-105"
+              className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full border-2 border-primary text-primary hover:bg-primary/10 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-all duration-300 transform hover:scale-105 touch-manipulation min-h-[44px] flex items-center justify-center text-center"
             >
               <span className="relative z-10">{t.hero.contactMe}</span>
             </a>
@@ -236,7 +236,7 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
               href="/cv-harvard.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-8 py-4 text-lg font-semibold rounded-full bg-primary text-dark hover:bg-primary/90 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)] transition-all duration-300 transform hover:scale-105"
+              className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full bg-primary text-dark hover:bg-primary/90 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)] transition-all duration-300 transform hover:scale-105 touch-manipulation min-h-[44px] flex items-center justify-center text-center"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -252,11 +252,11 @@ export function Hero({ name, skill, about, avatar = '/avatar.jpg', email, github
       {/* Enhanced Scroll Indicator */}
       <button
         onClick={scrollToAbout}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-primary/60 hover:text-primary transition-all cursor-pointer animate-bounce group"
+        className="absolute bottom-6 sm:bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 text-primary/60 hover:text-primary transition-all cursor-pointer animate-bounce group touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
         aria-label={t.common.scrollToAbout}
       >
         <div className="relative">
-          <ArrowDown size={36} className="group-hover:scale-110 transition-transform" />
+          <ArrowDown size={28} className="sm:w-9 sm:h-9 md:w-[36px] md:h-[36px] group-hover:scale-110 transition-transform" />
           <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full -z-10 group-hover:bg-primary/40 transition-colors"></div>
         </div>
       </button>

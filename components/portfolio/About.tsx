@@ -69,15 +69,15 @@ export function About({ about, name }: AboutProps) {
             <div className="absolute bottom-0 left-0 w-24 h-1 bg-gradient-to-r from-primary to-transparent"></div>
           </div>
 
-          <div className="space-y-8">
-            <div className="relative p-8 rounded-2xl bg-gradient-to-br from-surface/50 to-surface border border-primary/20 backdrop-blur-sm hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-              <p className="text-base sm:text-lg md:text-xl leading-relaxed text-text-secondary px-4 sm:px-0">
+          <div className="space-y-4 sm:space-y-6 md:space-y-8">
+            <div className="relative p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-surface/50 to-surface border border-primary/20 backdrop-blur-sm hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-text-secondary">
                 {renderTextWithHighlight(t.about.text)}
               </p>
             </div>
 
-            <div className="relative p-8 rounded-2xl bg-gradient-to-br from-surface/30 to-surface/50 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500">
-              <p className="text-lg leading-relaxed text-text-secondary">
+            <div className="relative p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-surface/30 to-surface/50 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500">
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-text-secondary">
                 {t.about.hobby}
               </p>
             </div>

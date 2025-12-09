@@ -25,7 +25,7 @@ export default function Home() {
         setTimeout(() => {
           const element = document.querySelector(hash)
           if (element) {
-            const headerOffset = 80
+            const headerOffset = typeof window !== 'undefined' && window.innerWidth < 640 ? 64 : 80
             const elementPosition = element.getBoundingClientRect().top
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset
             window.scrollTo({

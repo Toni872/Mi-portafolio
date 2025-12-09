@@ -50,47 +50,47 @@ export function Education({ training }: EducationProps) {
             <div className="absolute bottom-0 left-0 w-24 h-1 bg-gradient-to-r from-primary to-transparent"></div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-5 md:space-y-6">
             {educationItems.map((item, index) => {
               const IconComponent = iconMap[item.icon] || BookOpen
               
               return (
                 <Card
                   key={index}
-                  className="p-6 md:p-8 bg-gradient-to-br from-surface/50 to-surface border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]"
+                  className="p-4 sm:p-5 md:p-6 lg:p-8 bg-gradient-to-br from-surface/50 to-surface border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]"
                 >
-                  <div className="flex flex-col md:flex-row gap-6">
+                  <div className="flex flex-col md:flex-row gap-4 sm:gap-5 md:gap-6">
                     <div className="flex-shrink-0">
-                      <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center border border-primary/30">
-                        <IconComponent className="h-8 w-8 text-primary" />
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center border border-primary/30">
+                        <IconComponent className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary" />
                       </div>
                     </div>
                     
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-2">
-                        <div className="flex-1">
+                        <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1 flex-wrap">
-                            <h3 className="text-xl font-semibold text-text">{item.title}</h3>
+                            <h3 className="text-lg sm:text-xl font-semibold text-text break-words">{item.title}</h3>
                             {item.certificate && (
                               <a
                                 href={item.certificate}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center p-1.5 rounded-md text-primary hover:text-primary-light hover:bg-primary/20 transition-all duration-200 hover:scale-110 border border-primary/30 hover:border-primary/50"
+                                className="inline-flex items-center justify-center p-1.5 rounded-md text-primary hover:text-primary-light hover:bg-primary/20 transition-all duration-200 hover:scale-110 border border-primary/30 hover:border-primary/50 touch-manipulation min-h-[32px] min-w-[32px] flex-shrink-0"
                                 title="Ver certificado"
                               >
-                                <ExternalLink className="h-5 w-5" strokeWidth={2.5} />
+                                <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.5} />
                               </a>
                             )}
                           </div>
-                          <p className="text-lg font-medium text-primary-light mb-2">{item.subtitle}</p>
+                          <p className="text-sm sm:text-base md:text-lg font-medium text-primary-light mb-2 break-words">{item.subtitle}</p>
                         </div>
-                        <div className="flex items-center gap-2 text-text-secondary text-sm">
-                          <Calendar className="h-4 w-4" />
-                          <span>{item.date}</span>
+                        <div className="flex items-center gap-2 text-text-secondary text-xs sm:text-sm flex-shrink-0">
+                          <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                          <span className="break-words">{item.date}</span>
                         </div>
                       </div>
-                      <p className="text-text-secondary leading-relaxed">{item.description}</p>
+                      <p className="text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed break-words">{item.description}</p>
                     </div>
                   </div>
                 </Card>

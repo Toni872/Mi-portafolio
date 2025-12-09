@@ -62,20 +62,20 @@ export function TechStack({ technologies }: TechStackProps) {
           </div>
 
           {/* Animated Carousel */}
-          <div className="relative overflow-hidden py-8">
+          <div className="relative overflow-hidden py-4 sm:py-6 md:py-8">
             {/* Gradient overlays for fade effect */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none"></div>
             
             <div className="flex tech-scroll-animation">
               {duplicatedTech.map((tech, index) => (
                 <div
                   key={`${tech.name}-${index}`}
-                  className="flex-shrink-0 mx-6 group"
+                  className="flex-shrink-0 mx-3 sm:mx-4 md:mx-6 group"
                 >
-                  <div className="flex flex-col items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] min-w-[140px] hover:scale-110 hover:-translate-y-2">
+                  <div className="flex flex-col items-center justify-center p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-surface/50 to-surface border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] min-w-[100px] sm:min-w-[120px] md:min-w-[140px] hover:scale-110 hover:-translate-y-2">
                     <div 
-                      className="mb-3 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6 relative w-16 h-16 flex items-center justify-center"
+                      className="mb-2 sm:mb-3 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6 relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center"
                     >
                       <Image
                         src={tech.logo}
@@ -86,7 +86,7 @@ export function TechStack({ technologies }: TechStackProps) {
                         style={{ filter: 'drop-shadow(0 0 8px rgba(34,197,94,0.3))' }}
                       />
                     </div>
-                    <span className="text-text-secondary group-hover:text-text transition-colors duration-300 font-semibold text-sm">
+                    <span className="text-text-secondary group-hover:text-text transition-colors duration-300 font-semibold text-xs sm:text-sm">
                       {tech.name}
                     </span>
                   </div>

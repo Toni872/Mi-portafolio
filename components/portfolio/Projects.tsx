@@ -41,7 +41,7 @@ export function Projects({ projects }: ProjectsProps) {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
             {projects.map((project, index) => {
               const projectTranslations = t.projects.details[project.id as keyof typeof t.projects.details]
               const hasVideo = project.id === 'sistema-erp' || project.id === 'vilok-project' || project.id === 'tasadiv'
@@ -107,27 +107,27 @@ export function Projects({ projects }: ProjectsProps) {
                         )}
                       </div>
                     )}
-                    <CardHeader>
+                    <CardHeader className="p-4 sm:p-6">
                       <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <CardTitle className="text-xl mb-1">{projectTranslations?.title || project.title}</CardTitle>
-                          <CardDescription className="text-sm">
+                        <div className="flex-1 min-w-0">
+                          <CardTitle className="text-lg sm:text-xl mb-1 line-clamp-2">{projectTranslations?.title || project.title}</CardTitle>
+                          <CardDescription className="text-xs sm:text-sm line-clamp-2">
                             {projectTranslations?.subtitle || project.subtitle}
                           </CardDescription>
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="flex-1 flex flex-col">
-                      <p className="text-gray-300 leading-relaxed line-clamp-3 mb-4 text-sm">
+                    <CardContent className="flex-1 flex flex-col p-4 sm:p-6 pt-0 sm:pt-0">
+                      <p className="text-gray-300 leading-relaxed line-clamp-3 mb-3 sm:mb-4 text-xs sm:text-sm">
                         {projectTranslations?.description || project.description}
                       </p>
 
                       {project.technologies && project.technologies.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mb-4">
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                           {project.technologies.slice(0, 4).map((tech, techIndex) => (
                             <span
                               key={techIndex}
-                              className="px-2 py-1 bg-surface rounded text-xs text-gray-300 border border-border"
+                              className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-surface rounded text-[10px] sm:text-xs text-gray-300 border border-border"
                             >
                               {tech.name}
                             </span>
@@ -135,7 +135,7 @@ export function Projects({ projects }: ProjectsProps) {
                         </div>
                       )}
 
-                      <div className="mt-auto pt-4 flex flex-wrap gap-2">
+                      <div className="mt-auto pt-2 sm:pt-4 flex flex-wrap gap-2">
                         {project.github && (
                           <Button
                             asChild

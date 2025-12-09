@@ -80,14 +80,8 @@ html, body {
   
   /* Optimizar padding de secciones en móviles */
   .section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-  
-  /* Optimizar container en móviles */
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
   
   /* Optimizar imágenes y videos */
@@ -196,7 +190,13 @@ a:hover {
   padding: 0 2rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
   .container {
     padding: 0 1.5rem;
   }

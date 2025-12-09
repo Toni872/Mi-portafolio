@@ -18,7 +18,7 @@ export function Header() {
   const scrollToSection = (hash: string) => {
     const element = document.querySelector(hash)
     if (element) {
-      const headerOffset = 80 // Altura del header
+      const headerOffset = typeof window !== 'undefined' && window.innerWidth < 640 ? 64 : 80 // Altura del header (móvil: 64px, desktop: 80px)
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
@@ -113,7 +113,7 @@ export function Header() {
     >
       {isScrolled && <HeaderMatrixBackground isVisible={isScrolled} />}
       <div className="container relative z-10">
-        <div className="flex items-center justify-center h-20">
+        <div className="flex items-center justify-center h-16 sm:h-20">
           {/* Desktop Navigation - Centered */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link, index) => {
@@ -159,8 +159,8 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border/50">
-            <div className="flex flex-col gap-2">
+          <nav className="md:hidden py-3 border-t border-border/50">
+            <div className="flex flex-col gap-1.5">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href || (link.isHash && pathname === '/')
                 return (
@@ -168,7 +168,7 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={(e) => handleNavClick(link.href, link.isHash, e)}
-                    className={`relative px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 touch-manipulation min-h-[44px] flex items-center ${
+                    className={`relative px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 touch-manipulation min-h-[44px] flex items-center ${
                       isActive
                         ? 'text-primary bg-primary/10 border border-primary/30'
                         : 'text-gray-400 hover:text-text hover:bg-surface/50 active:bg-surface/70'
