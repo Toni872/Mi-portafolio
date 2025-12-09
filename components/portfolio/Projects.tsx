@@ -32,7 +32,7 @@ export function Projects({ projects }: ProjectsProps) {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-50"></div>
       
       <div className="container relative z-10">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="relative mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
               {t.projects.title}
@@ -68,9 +68,6 @@ export function Projects({ projects }: ProjectsProps) {
                   onKeyDown={handleKeyDown}
                   className="group relative h-full cursor-pointer overflow-hidden border border-border bg-surface/60 backdrop-blur-sm transition-all duration-300 hover:border-red-500/80 active:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
                 >
-                  {/* Borde animado rojo en hover */}
-                  <div className="pointer-events-none absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-red-500 via-red-600 to-red-500 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500 animate-[spin_3s_linear_infinite]"></div>
-
                   <div className="relative z-10 flex flex-col h-full">
                     {project.image && (
                       <div className="relative rounded-t-lg overflow-hidden aspect-video">

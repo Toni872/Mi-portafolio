@@ -57,6 +57,10 @@ export default function Home() {
           skill={portfolio.skill}
           about={portfolio.about}
           avatar={portfolio.avatar}
+          email={portfolio.media.email}
+          github={portfolio.media.github}
+          linkedin={portfolio.media.linkedin}
+          phone="+34687723287"
         />
         <About
           about={portfolio.about}

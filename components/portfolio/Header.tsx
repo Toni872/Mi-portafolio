@@ -113,27 +113,8 @@ export function Header() {
     >
       {isScrolled && <HeaderMatrixBackground isVisible={isScrolled} />}
       <div className="container relative z-10">
-        <div className="flex items-center justify-between h-20">
-          {/* Professional Logo */}
-          <Link
-            href="/#projects"
-            onClick={(e) => {
-              e.preventDefault()
-              if (pathname === '/') {
-                scrollToSection('#projects')
-                window.history.pushState(null, '', '#projects')
-              } else {
-                router.push('/#projects')
-              }
-            }}
-            className="group relative flex items-center"
-          >
-            <span className="text-xl font-bold text-text-secondary group-hover:text-red-500 transition-colors duration-300">
-              Antonio Lloret
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
+        <div className="flex items-center justify-center h-20">
+          {/* Desktop Navigation - Centered */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link, index) => {
               const isActive = pathname === link.href || (link.href === '/' && pathname === '/')
