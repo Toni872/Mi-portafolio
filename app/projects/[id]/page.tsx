@@ -36,11 +36,11 @@ export default function ProjectPage() {
     return (
       <>
         <Header />
-        <main className="min-h-screen pt-20">
-          <div className="container">
-            <div className="max-w-4xl mx-auto text-center py-20">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 px-4">{t.projects.notFound}</h1>
-              <Button onClick={() => router.push('/')} variant="outline">
+        <main className="min-h-screen pt-16 sm:pt-20">
+          <div className="container px-4 sm:px-0">
+            <div className="max-w-4xl mx-auto text-center py-12 sm:py-16 md:py-20">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 px-4 break-words">{t.projects.notFound}</h1>
+              <Button onClick={() => router.push('/')} variant="outline" className="w-full sm:w-auto touch-manipulation min-h-[44px]">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 {t.common.backHome}
               </Button>
@@ -57,27 +57,27 @@ export default function ProjectPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen pt-20">
-        <div className="container">
-          <div className="max-w-6xl mx-auto py-12">
+      <main className="min-h-screen pt-16 sm:pt-20">
+        <div className="container px-4 sm:px-0">
+          <div className="max-w-6xl mx-auto py-6 sm:py-8 md:py-12">
             {/* Back Button */}
             <Button
               onClick={() => router.push('/#projects')}
               variant="ghost"
-              className="mb-8"
+              className="mb-4 sm:mb-6 md:mb-8 w-full sm:w-auto touch-manipulation min-h-[44px]"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               {t.common.backToProjects}
             </Button>
 
             {/* Project Header */}
-            <div className="mb-12">
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent px-4 sm:px-0">
+            <div className="mb-6 sm:mb-8 md:mb-12">
+              <div className="flex items-start justify-between mb-4 sm:mb-6">
+                <div className="w-full min-w-0">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent break-words">
                     {projectTranslations?.title || project.title}
                   </h1>
-                  <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-6 px-4 sm:px-0">
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 mb-4 sm:mb-6 break-words">
                     {projectTranslations?.subtitle || project.subtitle}
                   </p>
                 </div>
@@ -85,7 +85,7 @@ export default function ProjectPage() {
 
               {/* Project Image or Video */}
               {project.image && (
-                <div className={`relative w-full rounded-lg overflow-hidden mb-8 border-2 border-border ${(isERPProject || isVilokProject || isTasaDivProject) ? 'aspect-video max-h-[300px] sm:max-h-[400px] md:max-h-[600px]' : 'h-64 sm:h-80 md:h-96'}`}>
+                <div className={`relative w-full rounded-lg overflow-hidden mb-4 sm:mb-6 md:mb-8 border-2 border-border ${(isERPProject || isVilokProject || isTasaDivProject) ? 'aspect-video max-h-[200px] sm:max-h-[300px] md:max-h-[400px] lg:max-h-[600px]' : 'h-48 sm:h-64 md:h-80 lg:h-96'}`}>
                   {(isERPProject || isVilokProject || isTasaDivProject) && !isVideoPlaying ? (
                     <div className="relative w-full h-full group cursor-pointer" onClick={() => setIsVideoPlaying(true)}>
                       {/* GIF como miniatura del video */}
@@ -157,10 +157,10 @@ export default function ProjectPage() {
               )}
 
               {/* Action Buttons */}
-              <div className="flex gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
                 {project.github && (
-                  <Button asChild variant="outline" size="lg">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                  <Button asChild variant="outline" size="lg" className="w-full sm:w-auto touch-manipulation min-h-[44px]">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
                       <Github className="h-5 w-5 mr-2" />
                       {t.projects.code}
                     </a>
@@ -170,15 +170,15 @@ export default function ProjectPage() {
             </div>
 
             {/* Project Details */}
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {/* Main Content */}
-              <div className="md:col-span-2 space-y-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{t.projects.description}</CardTitle>
+              <div className="md:col-span-2 space-y-4 sm:space-y-6 md:space-y-8">
+                <Card className="p-4 sm:p-6">
+                  <CardHeader className="p-0 pb-3 sm:pb-4">
+                    <CardTitle className="text-lg sm:text-xl md:text-2xl">{t.projects.description}</CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-300 leading-relaxed text-lg">
+                  <CardContent className="p-0">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed break-words">
                       {projectTranslations?.description || project.description}
                     </p>
                   </CardContent>
@@ -186,16 +186,16 @@ export default function ProjectPage() {
 
                 {/* Technologies */}
                 {project.technologies && project.technologies.length > 0 && (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>{t.projects.technologies}</CardTitle>
+                  <Card className="p-4 sm:p-6">
+                    <CardHeader className="p-0 pb-3 sm:pb-4">
+                      <CardTitle className="text-lg sm:text-xl md:text-2xl">{t.projects.technologies}</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-wrap gap-3">
+                    <CardContent className="p-0">
+                      <div className="flex flex-wrap gap-2 sm:gap-3">
                         {project.technologies.map((tech, index) => (
                           <span
                             key={index}
-                            className="px-4 py-2 bg-surface/80 backdrop-blur-sm rounded-md text-sm text-text-secondary border border-primary/20 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
+                            className="px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-surface/80 backdrop-blur-sm rounded-md text-xs sm:text-sm text-text-secondary border border-primary/20 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
                           >
                             {tech.name}
                           </span>
@@ -207,11 +207,11 @@ export default function ProjectPage() {
 
                 {/* Comments Section */}
                 {project.id && (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>{t.comments.title}</CardTitle>
+                  <Card className="p-4 sm:p-6">
+                    <CardHeader className="p-0 pb-3 sm:pb-4">
+                      <CardTitle className="text-lg sm:text-xl md:text-2xl">{t.comments.title}</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-0">
                       <Comments projectId={project.id} />
                     </CardContent>
                   </Card>
@@ -219,15 +219,15 @@ export default function ProjectPage() {
               </div>
 
               {/* Sidebar */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 {/* Stats */}
                 {project.stats && (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>{t.projects.stats}</CardTitle>
+                  <Card className="p-4 sm:p-6">
+                    <CardHeader className="p-0 pb-3 sm:pb-4">
+                      <CardTitle className="text-lg sm:text-xl md:text-2xl">{t.projects.stats}</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
+                    <CardContent className="p-0">
+                      <div className="space-y-3 sm:space-y-4">
                         {Object.entries(project.stats).map(([key, value]) => {
                           const label =
                             language === 'es'
@@ -243,9 +243,9 @@ export default function ProjectPage() {
                               : key.charAt(0).toUpperCase() + key.slice(1)
 
                           return (
-                            <div key={key} className="flex justify-between items-center">
-                              <span className="text-gray-400">{label}:</span>
-                              <span className="text-primary font-semibold">{value}</span>
+                            <div key={key} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0">
+                              <span className="text-xs sm:text-sm text-gray-400">{label}:</span>
+                              <span className="text-xs sm:text-sm md:text-base text-primary font-semibold break-words">{value}</span>
                             </div>
                           )
                         })}
@@ -255,25 +255,25 @@ export default function ProjectPage() {
                 )}
 
                 {/* Project Info */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{t.projects.info}</CardTitle>
+                <Card className="p-4 sm:p-6">
+                  <CardHeader className="p-0 pb-3 sm:pb-4">
+                    <CardTitle className="text-lg sm:text-xl md:text-2xl">{t.projects.info}</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3">
+                  <CardContent className="p-0 space-y-3">
                     {project.id && (
                       <div>
-                        <span className="text-gray-400 text-sm">ID:</span>
-                        <p className="text-text font-mono text-sm">{project.id}</p>
+                        <span className="text-xs sm:text-sm text-gray-400">ID:</span>
+                        <p className="text-xs sm:text-sm text-text font-mono break-all">{project.id}</p>
                       </div>
                     )}
                     {project.github && (
                       <div>
-                        <span className="text-gray-400 text-sm">{t.projects.repository}:</span>
+                        <span className="text-xs sm:text-sm text-gray-400">{t.projects.repository}:</span>
                         <a
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-primary hover:underline block truncate"
+                          className="text-xs sm:text-sm text-primary hover:underline block break-all"
                         >
                           {project.github}
                         </a>
