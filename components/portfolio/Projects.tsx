@@ -66,11 +66,10 @@ export function Projects({ projects }: ProjectsProps) {
                   tabIndex={0}
                   onClick={handleNavigate}
                   onKeyDown={handleKeyDown}
-                  className="group relative h-full cursor-pointer overflow-hidden border border-border bg-surface/60 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+                  className="group relative h-full cursor-pointer overflow-hidden border border-border bg-surface/60 backdrop-blur-sm transition-all duration-300 hover:border-red-500/80 active:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
                 >
-                  {/* Borde animado rojo */}
-                  <div className="pointer-events-none absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-red-500 via-red-400 to-red-600 opacity-0 group-hover:opacity-60 group-active:opacity-80 blur-sm transition duration-300 animate-[spin_8s_linear_infinite]"></div>
-                  <div className="pointer-events-none absolute inset-0 rounded-xl border border-red-500/50 opacity-0 group-hover:opacity-80 group-active:opacity-100 transition duration-200"></div>
+                  {/* Borde animado rojo en hover */}
+                  <div className="pointer-events-none absolute -inset-[2px] rounded-2xl bg-gradient-to-r from-red-500 via-red-600 to-red-500 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500 animate-[spin_3s_linear_infinite]"></div>
 
                   <div className="relative z-10 flex flex-col h-full">
                     {project.image && (
