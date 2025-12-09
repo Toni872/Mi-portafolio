@@ -1,7 +1,6 @@
-# Excluir videos del deploy - son demasiado grandes para Vercel
-# Se subirán usando Vercel Blob Storage por separado
-public/videos/*.mp4
-public/videos/
+# Videos comprimidos ahora están incluidos (< 3MB cada uno)
+# Solo excluir videos originales grandes si existen
+public/videos/compressed/
 
 
 

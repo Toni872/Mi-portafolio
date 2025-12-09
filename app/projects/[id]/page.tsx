@@ -99,10 +99,10 @@ export default function ProjectPage() {
                       <video
                         src={
                           isERPProject
-                            ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/erp-demo"
+                            ? "/videos/erp-demo.mp4"
                             : isVilokProject
-                              ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/vilok-demo"
-                              : "https://res.cloudinary.com/dwsy6b12m/video/upload/v1765276429/portafolio/tasadiv-demo"
+                              ? "/videos/vilok-demo.mp4"
+                              : "/videos/tasadiv-demo.mp4"
                         }
                         className="absolute inset-0 w-full h-full object-contain opacity-0"
                         preload="metadata"
@@ -128,10 +128,10 @@ export default function ProjectPage() {
                     <video
                       src={
                         isERPProject
-                          ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/erp-demo"
+                          ? "/videos/erp-demo.mp4"
                           : isVilokProject
-                            ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/vilok-demo"
-                            : "https://res.cloudinary.com/dwsy6b12m/video/upload/v1765276429/portafolio/tasadiv-demo"
+                            ? "/videos/vilok-demo.mp4"
+                            : "/videos/tasadiv-demo.mp4"
                       }
                       className="w-full h-full object-contain"
                       controls
