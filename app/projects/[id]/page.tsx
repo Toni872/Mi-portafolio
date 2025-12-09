@@ -102,7 +102,7 @@ export default function ProjectPage() {
                             ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/erp-demo"
                             : isVilokProject
                               ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/vilok-demo"
-                              : "https://res.cloudinary.com/dwsy6b12m/video/upload/v1765276429/portafolio/portafolio/tasadiv-demo"
+                              : "https://res.cloudinary.com/dwsy6b12m/video/upload/v1765276429/portafolio/tasadiv-demo"
                         }
                         className="absolute inset-0 w-full h-full object-contain opacity-0"
                         preload="metadata"
@@ -131,7 +131,7 @@ export default function ProjectPage() {
                           ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/erp-demo"
                           : isVilokProject
                             ? "https://res.cloudinary.com/dwsy6b12m/video/upload/v1/portafolio/vilok-demo"
-                            : "https://res.cloudinary.com/dwsy6b12m/video/upload/v1765276429/portafolio/portafolio/tasadiv-demo"
+                            : "https://res.cloudinary.com/dwsy6b12m/video/upload/v1765276429/portafolio/tasadiv-demo"
                       }
                       className="w-full h-full object-contain"
                       controls
